@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DOWNLOAD=https://ftp.gnu.org/gnu/gawk/gawk-5.3.2.tar.xz
+
+function build {
+	sed -i 's/extras//' Makefile.in
+	./configure $(DEFAULT_CONFIGURE_ARGS) && make && make DESTDIR=$LFS install
+}

@@ -1,0 +1,51 @@
+#!/bin/bash
+
+DOWNLOAD=https://sourceware.org/pub/binutils/releases/binutils-2.44.tar.xz
+BUILD_PASS1_DIR=build-pass1
+BUILD_PASS2_DIR=build-pass2
+
+function do_pass1 {
+	mkdir -v $BUILD_PASS1_DIR
+	pushd $BUILD_PASS1_DIR > /dev/null
+
+	../configure --prefix=$LFS/tools \
+				 --with-sysroot=$LFS \
+				 --target=$LFS_TGT \
+				 --disable-nls \
+				 --enable-gprofng=no \
+				 --disable-werror \
+				 --enable-new-dtags \
+				 --enable-default-hash-style=gnu && make && make install
+	popd > /dev/null
+}
+
+function do_pass2 {
+	sed '6031s/$add_dir//' -i ltmain.sh
+
+	mkdir -v $BUILD_PASS2_DIR
+	pushd $BUILD_PASS2_DIR > /dev/null
+
+	../configure --prefix=/usr \
+				 --build=$(../config.guess) \
+				 --host=$LFS_TGT \
+				 --disable-nls \
+				 --enable-shared \
+				 --enable-gprofng=no \
+				 --disable-werror \
+				 --enable-64-bit-bfd \
+				 --enable-new-dtags \
+				 --enable-default-hash-style=gnu && make && make DESTDIR=$LFS install
+	rm -v $LFS/usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes,sframe}.{a,la}
+	popd > /dev/null
+}
+
+function build {
+	if [ ! -d $BUILD_PASS1_DIR ]; then
+		do_pass1
+	elif [ ! -d $BUILD_PASS2_DIR ]; then
+		do_pass2
+	else
+		echo "both binutils passes are already done"
+		exit
+	fi
+}

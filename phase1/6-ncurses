@@ -1,0 +1,33 @@
+#!/bin/bash
+
+DOWNLOAD=https://invisible-mirror.net/archives/ncurses/ncurses-6.5.tar.gz
+
+function build {
+	TIC_DIR=build-tic
+	if [ ! -d $TIC_DIR ]; then
+		mkdir -v $TIC_DIR
+	fi
+	pushd $TIC_DIR > /dev/null
+
+	../configure AWK=gawk
+	make -C include
+	make -C progs tic
+	popd > /dev/null
+
+	./configure --prefix=/usr \
+				--host=$LFS_TGT \
+				--build=$(./config.guess) \
+				--mandir=/usr/share/man \
+				--with-manpage-format=normal \
+				--with-shared \
+				--without-normal \
+				--with-cxx-shared \
+				--without-debug \
+				--without-ada \
+				--disable-stripping \
+				AWK=gawk
+	make
+	make DESTDIR=$LFS TIC_PATH=$(pwd)/$TIC_DIR/progs/tic install
+	ln -sv libncursesw.so $LFS/usr/lib/libncurses.so
+	sed -e 's/^#if.*XOPEN.*$/#if 1/' -i $LFS/usr/include/curses.h
+}

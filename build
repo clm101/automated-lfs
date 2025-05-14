@@ -1,0 +1,84 @@
+#!/bin/bash
+
+LFS=~/lfs
+
+mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
+for i in bin lib sbin; do
+	ln -sv usr/$i $LFS/$i
+done
+mkdir -pv $LFS/lib64
+mkdir -pv $LFS/tools
+
+#exec env -i HOME=$HOME TERM=$TERM /bin/bash
+unset $(env | cut -d= -f1)
+PATH=/usr/bin
+set +h
+set -e
+umask 022
+LC_ALL=POSIX
+LFS=~/lfs
+LFS_TGT=$(uname -m)-lfs-linux-gnu
+if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
+#PATH=/bin:$PATH
+PATH=$LFS/tools/bin:$PATH
+CONFIG_SITE=$LFS/usr/share/config.site
+MAKEFLAGS=-j$(nproc)
+export LC_ALL LFS LFS_TGT PATH CONFIG_SITE MAKEFLAGS
+
+while getopts ":s:" option; do
+	case $option in
+		s) start_index=$OPTARG;;
+		*) 
+			echo "bad option: " $option
+			exit ;;
+	esac
+done
+
+function DEFAULT_CONFIGURE_ARGS {
+	echo "--prefix=/usr \
+		  --host=$LFS_TGT \
+		  --build=$(build-aux/config.guess)"
+}
+
+function build {
+	./configure $(DEFAULT_CONFIGURE_ARGS) && make && make DESTDIR=$LFS install
+}
+
+function do_phase1 {
+	shopt -s extglob
+	for package in `ls -v phase1`; do
+		index=${package%%-*}
+		if [ $index -lt ${start_index:=-1} ]; then
+			continue
+		fi
+		package_script=`realpath "phase1/$package"`
+
+		(
+			. $package_script
+			package_archive=`basename ${DOWNLOAD:?}`
+			package_directory=${package_archive%%-[[:digit:]]*}
+			source_directory="sources/$package_directory"
+			if [ ! -d $source_directory ]; then
+				mkdir -pv $source_directory
+				echo "created directory: $source_directory"
+			fi
+
+			pushd $source_directory > /dev/null
+			if [ ! -e $package_archive ]; then
+				wget $DOWNLOAD
+			fi
+
+			decompressed_archive=${package_archive%.tar.*}
+			if [ ! -d $decompressed_archive ]; then
+				tar -xf $package_archive
+			fi
+
+			pushd $decompressed_archive > /dev/null
+			build
+			popd > /dev/null
+			popd > /dev/null;
+		)
+	done;
+}
+
+do_phase1

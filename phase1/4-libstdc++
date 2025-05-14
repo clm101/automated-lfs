@@ -1,0 +1,22 @@
+#!/bin/bash
+
+DOWNLOAD=https://ftp.gnu.org/gnu/gcc/gcc-15.1.0/gcc-15.1.0.tar.xz
+
+function build {
+	BUILD_DIR=build-c++
+
+	if [ ! -d $BUILD_DIR ]; then
+		mkdir -v $BUILD_DIR
+	fi
+	pushd $BUILD_DIR > /dev/null
+
+	../libstdc++-v3/configure --prefix=/usr \
+							  --host=$LFS_TGT \
+							  --build=$(../config.guess) \
+							  --disable-multilib \
+							  --disable-nls \
+							  --disable-libstdcxx-pch \
+							  --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/15.1.0 && make && make DESTDIR=$LFS install
+	rm -v $LFS/usr/lib/lib{stdc++{,exp,fs},supc++}.la
+	popd > /dev/null
+}

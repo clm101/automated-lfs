@@ -1,0 +1,23 @@
+#!/bin/bash
+
+DOWNLOAD=https://astron.com/pub/file/file-5.46.tar.gz
+
+function build {
+	if [ ! -d build ]; then
+		mkdir -v build
+	fi
+	pushd build > /dev/null
+
+	../configure --disable-bzlib \
+				 --disable-libseccomp \
+				 --disable-xzlib \
+				 --disable-zlib && make
+	popd > /dev/null
+
+	./configure --prefix=/usr \
+				--host=$LFS_TGT \
+				--build=$(./config.guess)
+	make FILE_COMPILE=$(pwd)/build/src/file
+	make DESTDIR=$LFS install
+	rm -v $LFS/usr/lib/libmagic.la
+}
