@@ -1,1 +1,1 @@
-. $LFS/phase1/0-binutils -s
+. $(dirname `realpath $0)/phase1/0-binutils -s
