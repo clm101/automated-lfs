@@ -42,12 +42,17 @@ function setup_lfs {
 		fi
 	)
 
-	root_directories=(etc var usr/{bin,lib,sbin} lib64 tools)
+	sudo chown root:root $LFS
+	sudo chmod 755 $LFS
+
+	root_directories=(etc var usr/{bin,lib,sbin} lib64 tools sources)
 	for directory in ${root_directories[@]}; do
 		if [ ! -d $LFS/$directory ]; then
 			sudo mkdir -pv $LFS/$directory
 		fi
 	done
+
+	sudo chmod -v a+wt $LFS/sources
 
 	for i in bin lib sbin; do
 		if [ ! -L $LFS/$i ]; then
