@@ -105,7 +105,7 @@ function do_phase1 {
 
 if [ ! -v do_build ]; then
 	setup_lfs
-	su -c "bash /home/camitche/automated-lfs/build" - lfs
+	su lfs -s /bin/bash -c "bash `realpath $0` -b"
 else
 	do_phase1
 fi
