@@ -30,12 +30,13 @@ function setup_lfs {
 	MAKEFLAGS=-j$(nproc)
 	export LC_ALL LFS LFS_TGT PATH CONFIG_SITE MAKEFLAGS
 
-	set +e
-	mount | grep $LFS > /dev/null
-	if [ $? -ne 0 ]; then
-		sudo mount -v -t ext4 ${lfs_device:?Device to be mounted for LFS root is required by passing -l <device>} $LFS
-	fi
-	set -e
+	(
+		set +e
+		mount | grep $LFS > /dev/null
+		if [ $? -ne 0 ]; then
+			sudo mount -v -t ext4 ${lfs_device:?Device to be mounted for LFS root is required by passing -l <device>} $LFS
+		fi
+	)
 
 	root_directories=(etc var usr/{bin,lib,sbin} lib64 tools)
 	for directory in ${root_directories[@]}; do
