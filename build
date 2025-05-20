@@ -73,7 +73,7 @@ function do_phase1 {
 			. $package_script
 			package_archive=`basename ${DOWNLOAD:?}`
 			package_directory=${package_archive%%-[[:digit:]]*}
-			source_directory="sources/$package_directory"
+			source_directory="$LFS/sources/$package_directory"
 			if [ ! -d $source_directory ]; then
 				mkdir -pv $source_directory
 				echo "created directory: $source_directory"
