@@ -49,7 +49,6 @@ function setup_lfs {
 			sudo ln -sv usr/$i $LFS/$i
 		fi
 	done
-
 }
 
 function DEFAULT_CONFIGURE_ARGS {
