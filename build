@@ -7,7 +7,7 @@ umask 022
 
 while getopts ":bs:l:" option; do
 	case $option in
-		b) do_build=1;;
+		b) do_build= ;;
 		s) start_index=$OPTARG;;
 		l) lfs_device=$OPTARG;;
 		*) 
