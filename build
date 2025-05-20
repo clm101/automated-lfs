@@ -7,8 +7,9 @@ set +h
 set -e
 umask 022
 
-while getopts ":s:l:" option; do
+while getopts ":bs:l:" option; do
 	case $option in
+		b) do_build=1;;
 		s) start_index=$OPTARG;;
 		l) lfs_device=$OPTARG;;
 		*) 
@@ -96,5 +97,9 @@ function do_phase1 {
 	done;
 }
 
-setup_lfs
-do_phase1
+if [ ! -v do_build ]; then
+	setup_lfs
+	su -c "bash /home/camitche/automated-lfs/build" - lfs
+else
+	do_phase1
+fi
