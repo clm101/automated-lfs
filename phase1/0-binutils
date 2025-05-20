@@ -5,7 +5,9 @@ BUILD_PASS1_DIR=build-pass1
 BUILD_PASS2_DIR=build-pass2
 
 function do_pass1 {
-	mkdir -v $BUILD_PASS1_DIR
+	if [ ! -d $BUILD_PASS1_DIR ]; then
+		mkdir -v $BUILD_PASS1_DIR
+	fi
 	pushd $BUILD_PASS1_DIR > /dev/null
 
 	../configure --prefix=$LFS/tools \
@@ -22,7 +24,9 @@ function do_pass1 {
 function do_pass2 {
 	sed '6031s/$add_dir//' -i ltmain.sh
 
-	mkdir -v $BUILD_PASS2_DIR
+	if [ ! -d $BUILD_PASS2_DIR ]; then
+		mkdir -v $BUILD_PASS2_DIR
+	fi
 	pushd $BUILD_PASS2_DIR > /dev/null
 
 	../configure --prefix=/usr \
