@@ -37,7 +37,7 @@ function setup_lfs {
 	root_directories=(etc var usr/{bin,lib,sbin} lib64 tools)
 	for directory in ${root_directories[@]}; do
 		if [ ! -d $LFS/$directory ]; then
-			mkdir -pv $LFS/$directory
+			sudo mkdir -pv $LFS/$directory
 		fi
 	done
 
