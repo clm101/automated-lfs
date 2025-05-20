@@ -42,7 +42,9 @@ function setup_lfs {
 	done
 
 	for i in bin lib sbin; do
-		ln -sv usr/$i $LFS/$i
+		if [ ! -L $LFS/$i ]; then
+			sudo ln -sv usr/$i $LFS/$i
+		fi
 	done
 
 }
