@@ -84,11 +84,16 @@ function get_dependencies {
 
 function build {
 	get_dependencies
-	if [ ! -d $BUILD_PASS1_DIR ]; then
+	if [ ! -v second_pass ]; then
 		do_pass1
-	elif [ ! -d $BUILD_PASS2_DIR ]; then
-		do_pass2
 	else
-		echo "already built both passes of gcc"
+		do_pass2
 	fi
 }
+
+while getopts ":s" option; do
+	case $option in
+		s) second_pass= ;;
+		*) echo "unknown option passed to gcc script"; exit 1;;
+	esac
+done

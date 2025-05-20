@@ -1,1 +1,1 @@
-. $LFS/phase1/0-binutils
+. $LFS/phase1/0-binutils -s
