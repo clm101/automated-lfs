@@ -62,6 +62,11 @@ function build {
 }
 
 function do_phase1 {
+	for variable in LFS LFS_TGT LC_ALL PATH CONFIG_SITE MAKEFLAGS; do
+		echo "checking variable $variable with value ${!variable}"
+		([ ! -v $variable ] || [ -z ${!variable} ]) && echo "required variable $variable is unset or empty" && exit 1;
+	done
+
 	shopt -s extglob
 	for package in `ls -v phase1`; do
 		index=${package%%-*}
