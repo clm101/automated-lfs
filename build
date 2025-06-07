@@ -123,10 +123,12 @@ function do_phase1 {
 	done;
 }
 
-if [ ! -v do_build ]; then
-	setup_lfs
-	echo "launching phase1 as lfs user"
-	su lfs -s /bin/bash -c "bash `realpath $0` -b"
-else
-	do_phase1
-fi
+#if [ ! -v do_build ]; then
+	#setup_lfs
+	#echo "launching phase1 as lfs user"
+	#su lfs -s /bin/bash -c "bash `realpath $0` -b"
+#else
+	#do_phase1
+#fi
+setup_lfs
+do_phase1
