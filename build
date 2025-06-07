@@ -30,6 +30,8 @@ function setup_lfs {
 	MAKEFLAGS=-j$(nproc)
 	export LC_ALL LFS LFS_TGT PATH CONFIG_SITE MAKEFLAGS
 
+	(. version-check)
+
 	if [ ! -d $LFS ]; then
 		sudo mkdir -pv $LFS
 	fi
