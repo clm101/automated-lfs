@@ -84,16 +84,9 @@ function get_dependencies {
 
 function build {
 	get_dependencies
-	if [ ! -v second_pass ]; then
+	if [ ! -v enable_pass2 ]; then
 		do_pass1
 	else
 		do_pass2
 	fi
 }
-
-while getopts ":s" option; do
-	case $option in
-		s) second_pass= ;;
-		*) echo "unknown option passed to gcc script"; exit 1;;
-	esac
-done
