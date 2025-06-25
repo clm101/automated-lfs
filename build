@@ -3,17 +3,6 @@
 set +h
 set -e
 
-while getopts ":bs:l:" option; do
-	case $option in
-		b) do_build= ;;
-		s) start_index=$OPTARG;;
-		l) lfs_device=$OPTARG;;
-		*) 
-			echo "bad option: " $option
-			exit ;;
-	esac
-done
-
 function setup_lfs {
 	BUILD_USER=$USER
 	unset $(env | cut -d= -f1)
@@ -154,5 +143,18 @@ function setup_chroot {
 #else
 	#do_phase1
 #fi
+
+while getopts ":bcs:l:" option; do
+	case $option in
+		b) do_build= ;;
+		c) setup_lfs; setup_chroot; exit 0;;
+		s) start_index=$OPTARG;;
+		l) lfs_device=$OPTARG;;
+		*) 
+			echo "bad option: " $option
+			exit ;;
+	esac
+done
+
 setup_lfs
 do_phase1
