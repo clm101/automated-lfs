@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+	echo "missing download URL for package"
+	exit 1
+fi
+
+package_archive=`basename ${1:?}`
+package_directory=${package_archive%%-[[:digit:]]*}
+source_directory="${LFS:-}/sources/$package_directory"
+if [ ! -d $source_directory ]; then
+	mkdir -pv $source_directory
+	echo "created directory: $source_directory"
+fi
+
+pushd $source_directory > /dev/null
+if [ ! -e $package_archive ]; then
+	wget $1
+fi
+
+decompressed_archive=${package_archive%.tar.*}
+if [ ! -d $decompressed_archive ]; then
+	tar -xf $package_archive
+fi
+
+pushd $decompressed_archive

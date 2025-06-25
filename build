@@ -86,28 +86,8 @@ function do_phase1 {
 
 		(
 			. $package_script
-			package_archive=`basename ${DOWNLOAD:?}`
-			package_directory=${package_archive%%-[[:digit:]]*}
-			source_directory="$LFS/sources/$package_directory"
-			if [ ! -d $source_directory ]; then
-				mkdir -pv $source_directory
-				echo "created directory: $source_directory"
-			fi
-
-			pushd $source_directory > /dev/null
-			if [ ! -e $package_archive ]; then
-				wget $DOWNLOAD
-			fi
-
-			decompressed_archive=${package_archive%.tar.*}
-			if [ ! -d $decompressed_archive ]; then
-				tar -xf $package_archive
-			fi
-
-			pushd $decompressed_archive > /dev/null
+			./setup-script-environment ${DOWNLOAD:?}
 			build
-			popd > /dev/null
-			popd > /dev/null;
 		)
 	done;
 }
