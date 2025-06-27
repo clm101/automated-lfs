@@ -1,0 +1,7 @@
+#!/bin/bash
+
+STEPS=(lfs-copy gettext bison perl python texinfo util-linux)
+
+for step in ${STEPS[@]} do
+	(. $step)
+done

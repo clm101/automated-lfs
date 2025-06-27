@@ -1,0 +1,7 @@
+#!/bin/bash
+
+./setup-script-environment https://ftp.gnu.org/gnu/gettext/gettext-0.25.tar.xz
+
+./configure --disable-shared
+
+cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+./setup-script-environment https://www.python.org/ftp/python/3.13.5/Python-3.13.5.tar.xz
+
+./configure --prefix=/usr       \
+            --enable-shared     \
+            --without-ensurepip \
+            --without-static-libpython
+
+make
+make install

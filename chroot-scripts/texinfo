@@ -1,0 +1,7 @@
+#!/bin/bash
+
+./setup-script-environment https://ftp.gnu.org/gnu/texinfo/texinfo-7.2.tar.xz
+
+./configure --prefix=/usr
+make
+make install
