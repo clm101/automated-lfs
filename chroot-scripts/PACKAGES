@@ -1,0 +1,1 @@
+SCRIPTS=(gettext bison perl python texinfo util-linux man-pages iana-etc glibc zlib bzip2 xz lz4 zstd file readline m4 bc flex tcl expect dejagnu pkgconf binutils gmp mpfr mpc attr acl libcap libxcrypt gcc ncurses sed psmisc gettext-pass2 bison grep bash libtool gdbm gperf expat linux-pam shadow)

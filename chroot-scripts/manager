@@ -1,6 +1,7 @@
 #!/bin/bash
 
-STEPS=(lfs-copy gettext bison perl python texinfo util-linux)
+. PACKAGES
+STEPS=(lfs-copy ${SCRIPTS[@]})
 set -e
 for step in ${STEPS[@]} do
 	(. $step)
