@@ -87,7 +87,8 @@ function do_phase1 {
 
 		(
 			. $package_script
-			./setup-script-environment ${DOWNLOAD:?}
+			. setup-script-environment
+			do_download ${DOWNLOAD:?}
 			build
 		)
 	done;
