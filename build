@@ -115,6 +115,19 @@ function setup_chroot {
 	else
 		sudo mount -vt tmpfs -o nosuid,nodev tmpfs $LFS/dev/shm
 	fi
+
+	sudo cp -r ./chroot-scripts $LFS/chroot-scripts
+
+	. setup-script-environment
+	. chroot-scripts/PACKAGES
+	for script in ${SCRIPTS[@]}; do
+		(
+			. chroot-scripts/$script
+			do_download $DOWNLOAD_URL
+		)
+	done
+
+	exit 0
 }
 
 
