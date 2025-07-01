@@ -1,7 +1,18 @@
 #!/bin/bash
 
-./setup-script-environment https://ftp.gnu.org/gnu/gettext/gettext-0.25.tar.xz
+DOWNLOAD_URL=https://ftp.gnu.org/gnu/gettext/gettext-0.25.tar.xz
 
-./configure --disable-shared
-
-cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
+do_build() {
+	if [ -v DO_SECOND_PASS ]; then
+		./configure --prefix=/usr    \
+				--disable-static \
+				--docdir=/usr/share/doc/gettext-0.25
+		make
+		make install
+		chmod -v 0755 /usr/lib/preloadable_libintl.so
+	else
+		./configure --disable-shared
+		
+		cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
+	fi
+}
