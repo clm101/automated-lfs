@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DOWNLOAD_URL=https://github.com/Mic92/iana-etc/releases/download/20250618/iana-etc-20250618.tar.gz
+
+do_build() {
+	cp services protocols /etc
+}

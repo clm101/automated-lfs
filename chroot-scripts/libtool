@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DOWNLOAD_URL=https://ftp.gnu.org/gnu/libtool/libtool-2.5.4.tar.xz
+
+do_build() {
+	./configure --prefix=/usr
+	make
+	make install
+	rm -fv /usr/lib/libltdl.a
+}

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DOWNLOAD_URL=https://sourceforge.net/projects/psmisc/files/psmisc/psmisc-23.7.tar.xz
+
+do_build() {
+	./configure --prefix=/usr
+	make
+	make install
+}

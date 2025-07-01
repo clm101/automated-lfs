@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DOWNLOAD_URL=https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz
+
+do_build() {
+	sed -i "s/echo/#echo/" src/egrep.sh
+
+	./configure --prefix=/usr
+	make
+	make install
+}

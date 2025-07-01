@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DOWNLOAD_URL=https://astron.com/pub/file/file-5.46.tar.gz
+
+do_build() {
+	./configure --prefix=/usr
+
+	make
+	make install
+}
