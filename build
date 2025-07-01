@@ -95,6 +95,7 @@ function do_phase1 {
 }
 
 function setup_chroot {
+	echo "setting up chroot environment..."
 	sudo chown --from $BUILD_USER -R root:root $LFS/{usr,var,etc,tools,lib64}
 
 	for directory in $LFS/{dev,proc,sys,run}; do
