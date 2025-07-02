@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DOWNLOAD_URL=https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.47.tar.gz
+
+do_build() {
+	perl Makefile.PL
+	make
+	make install
+}

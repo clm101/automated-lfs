@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DOWNLOAD_URL=https://ftp.gnu.org/gnu/autoconf/autoconf-2.72.tar.xz
+
+do_build() {
+	./configure --prefix=/usr
+	make
+	make install
+}

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DOWNLOAD_URL=https://github.com/libffi/libffi/releases/download/v3.5.1/libffi-3.5.1.tar.gz
+
+do_build() {
+	./configure --prefix=/usr    \
+				--disable-static \
+				--with-gcc-arch=native
+	make
+	make install
+}

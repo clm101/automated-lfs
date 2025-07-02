@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DOWNLOAD_URL=https://www.greenwoodsoftware.com/less/less-679.tar.gz
+
+do_build() {
+	./configure --prefix=/usr --sysconfdir=/etc
+	make
+	make install
+}
