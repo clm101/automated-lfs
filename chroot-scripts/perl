@@ -3,7 +3,7 @@
 DOWNLOAD_URL=https://www.cpan.org/src/5.0/perl-5.41.9.tar.xz
 
 do_build() {
-	sh Configure -des                                         \
+	configure_args="-des                                         \
 	             -D prefix=/usr                               \
 	             -D vendorprefix=/usr                         \
 	             -D useshrplib                                \
@@ -12,8 +12,15 @@ do_build() {
 	             -D sitelib=/usr/lib/perl5/5.41/site_perl     \
 	             -D sitearch=/usr/lib/perl5/5.41/site_perl    \
 	             -D vendorlib=/usr/lib/perl5/5.41/vendor_perl \
-	             -D vendorarch=/usr/lib/perl5/5.41/vendor_perl
-	
+	             -D vendorarch=/usr/lib/perl5/5.41/vendor_perl"
+	if [ -v DO_SECOND_PASS ]; then
+		configure_args+=" -D man1dir=/usr/share/man/man1 \
+			             -D man3dir=/usr/share/man/man3  \
+			             -D pager="/usr/bin/less -isR"   \
+						 -D usethreads"
+	fi
+
+	sh Configure $configure_args
 	make
 	make install
 }
