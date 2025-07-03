@@ -1,0 +1,16 @@
+#!/bin/bash
+
+DOWNLOAD_URL=https://dbus.freedesktop.org/releases/dbus/dbus-1.16.2.tar.xz
+
+do_build() {
+	set +e
+	mkdir build
+	set -e
+	cd build
+
+	meson setup --prefix=/usr --buildtype=release --wrap-mode=nofallback ..
+	ninja
+	ninja install
+
+	ln -sfv /etc/machine-id /var/lib/dbus
+}

@@ -7,21 +7,25 @@ do_build() {
 	mkdir -pv /var/lib/hwclock
 	set -e
 	
-	./configure --libdir=/usr/lib     \
-	            --runstatedir=/run    \
-	            --disable-chfn-chsh   \
-	            --disable-login       \
-	            --disable-nologin     \
-	            --disable-su          \
-	            --disable-setpriv     \
-	            --disable-runuser     \
-	            --disable-pylibmount  \
-	            --disable-static      \
-	            --disable-liblastlog2 \
-	            --without-python      \
-	            ADJTIME_PATH=/var/lib/hwclock/adjtime \
-	            --docdir=/usr/share/doc/util-linux-2.41
+	configure_args="--libdir=/usr/lib     \
+					--runstatedir=/run    \
+		            --disable-chfn-chsh   \
+		            --disable-login       \
+		            --disable-nologin     \
+		            --disable-su          \
+		            --disable-setpriv     \
+		            --disable-runuser     \
+		            --disable-pylibmount  \
+		            --disable-static      \
+		            --disable-liblastlog2 \
+		            --without-python      \
+		            ADJTIME_PATH=/var/lib/hwclock/adjtime \
+		            --docdir=/usr/share/doc/util-linux-2.41"
+	if [ -v DO_SECOND_PASS ]; then
+		configure_args+=" --bindir=/usr/bin --sbindir=/usr/sbin"
+	fi
 	
+	./configure $configure_args
 	make
 	make install
 }

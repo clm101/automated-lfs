@@ -70,4 +70,18 @@ SCRIPTS=(gettext \
 		gzip \
 		iproute2 \
 		kbd \
+		libpipeline \
+		make \
+		patch \
+		tar \
+		texinfo-pass2 \
+		vim \
+		markup \
+		jinja2 \
+		systemd \
+		dbus \
+		mandb \
+		procps-ng \
+		util-linux-pass2 \
+		e2fsprogs \
 		)

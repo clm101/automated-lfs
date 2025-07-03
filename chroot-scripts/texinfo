@@ -6,4 +6,5 @@ do_build() {
 	./configure --prefix=/usr
 	make
 	make install
+	if [ -v DO_SECOND_PASS ]; then make TEXMF=/usr/share/texmf install-tex; fi
 }
