@@ -15,6 +15,5 @@ do_build() {
 	chmod -v 4755 /usr/sbin/unix_chkpwd
 
 	install -v -m755 -d /etc/pam.d
-	local extras=/chroot-scripts/extras
 	cp /chroot-scripts/extras/{system-account,system-auth,system-session,system-password,other} /etc/pam.d
 }
