@@ -1,1 +1,3 @@
 #!/bin/bash
+
+cp -v /chroot-scripts/extras/{hosts,passwd,group} /etc
