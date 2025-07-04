@@ -6,6 +6,7 @@ set -u
 
 function setup_lfs {
 	BUILD_USER=$USER
+	LFS_TERM=$TERM
 	unset $(env | cut -d= -f1)
 	umask 022
 
@@ -127,7 +128,14 @@ function setup_chroot {
 		)
 	done
 
-	exit 0
+	sudo chroot "$LFS" /usr/bin/env -i \
+				HOME=/root		\
+				TERM="$LFS_TERM"	\
+				PS1='(lfs chroot) \u:\w\$ '	\
+				PATH=/usr/bin:/usr/sbin		\
+				MAKEFLAGS="-j$(nproc)"		\
+				TESTSUITEFLAGS="-j$(nproc)"	\
+				/bin/bash /chroot-scripts/manager
 }
 
 
