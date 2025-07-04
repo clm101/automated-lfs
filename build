@@ -130,7 +130,8 @@ function setup_chroot {
 		lfs_mount sudo mount -vt tmpfs -o nosuid,nodev tmpfs $LFS/dev/shm
 	fi
 
-	sudo cp -r ./chroot-scripts $LFS/chroot-scripts
+	sudo cp -rv ./chroot-scripts $LFS
+	sudo cp -rv setup-script-environment $LFS/chroot-scripts
 
 	. setup-script-environment
 	. chroot-scripts/PACKAGES
