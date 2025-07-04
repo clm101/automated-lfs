@@ -95,6 +95,19 @@ function do_phase1 {
 	done;
 }
 
+lfs_mount() {
+	echo "attempting to mount ${!#}"
+	set +e
+	mount | grep "on ${!#}"
+	local return_value=$?
+	set -e
+	if [ $return_value -eq 0 ]; then
+		return
+	fi
+	echo "executing: $@"
+	$@
+}
+
 function setup_chroot {
 	echo "setting up chroot environment..."
 	sudo chown --from $BUILD_USER -R root:root $LFS/{usr,var,etc,tools,lib64}
@@ -105,16 +118,16 @@ function setup_chroot {
 		fi
 	done
 
-	sudo mount -v --bind /dev $LFS/dev
-	sudo mount -vt devpts devpts -o gid=5,mode=0620 $LFS/dev/pts
-	sudo mount -vt proc proc $LFS/proc
-	sudo mount -vt sysfs sysfs $LFS/sys
-	sudo mount -vt tmpfs tmpfs $LFS/run
+	lfs_mount sudo mount -v --bind /dev $LFS/dev
+	lfs_mount sudo mount -vt devpts devpts -o gid=5,mode=0620 $LFS/dev/pts
+	lfs_mount sudo mount -vt proc proc $LFS/proc
+	lfs_mount sudo mount -vt sysfs sysfs $LFS/sys
+	lfs_mount sudo mount -vt tmpfs tmpfs $LFS/run
 
 	if [ -h $LFS/dev/shm ]; then
 		sudo install -v -d -m 1777 $LFS$(realpath /dev/shm)
 	else
-		sudo mount -vt tmpfs -o nosuid,nodev tmpfs $LFS/dev/shm
+		lfs_mount sudo mount -vt tmpfs -o nosuid,nodev tmpfs $LFS/dev/shm
 	fi
 
 	sudo cp -r ./chroot-scripts $LFS/chroot-scripts
