@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. PACKAGES
+. /chroot-scripts/PACKAGES
 STEPS=(lfs-copy ${SCRIPTS[@]} lfs-cleanup lfs-setup-font lfs-setup-profile lfs-create-fstab)
 set -e
 for step in ${STEPS[@]} do
