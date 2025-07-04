@@ -6,6 +6,12 @@ parse_link() {
 	source_directory="${LFS:-}/sources/$package_directory"
 }
 
+get_decompressed_archive() {
+	local decompressed_archive=$(tar -tf $1 | head -n 1)
+	decompressed_archive=${decompressed_archive%%/*}
+	echo $decompressed_archive
+}
+
 do_download() {
 	if [ $# -ne 1 ]; then
 		echo "missing download URL for package"
@@ -23,7 +29,7 @@ do_download() {
 		wget $1
 	fi
 	
-	decompressed_archive=${package_archive%.tar.*}
+	decompressed_archive=$(get_decompressed_archive $package_archive)
 	if [ ! -d $decompressed_archive ]; then
 		tar -xf $package_archive
 	fi
