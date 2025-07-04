@@ -41,3 +41,4 @@ do_build() {
 	cp /chroot-scripts/extras/systemd-user /etc/pam.d
 	systemd-machine-id-setup
 	systemctl preset-all
+}
