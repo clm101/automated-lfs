@@ -1,4 +1,8 @@
 #!/bin/bash
 
 DO_SECOND_PASS=
-. /chroot-scripts/util-linux
+if [ -v LFS_CHROOT ]; then
+	. /chroot-scripts/util-linux
+else
+	. ./chroot-scripts/util-linux
+fi

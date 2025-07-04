@@ -1,4 +1,8 @@
 #!/bin/bash
 
 DO_SECOND_PASS=
-. /chroot-scripts/texinfo
+if [ -v LFS_CHROOT ]; then
+	. /chroot-scripts/texinfo
+else
+	. ./chroot-scripts/texinfo
+fi

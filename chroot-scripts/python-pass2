@@ -1,4 +1,8 @@
 #!/bin/bash
 
 DO_SECOND_PASS=
-. /chroot-scripts/python
+if [ -v LFS_CHROOT ]; then
+	. /chroot-scripts/python
+else
+	. ./chroot-scripts/python
+fi
