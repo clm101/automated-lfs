@@ -98,13 +98,13 @@ function do_phase1 {
 
 	shopt -s extglob
 	for step in ${steps[@]}; do
-		package=${step%-pass2}
+		echo doing step $step
 		step_script=`realpath "phase1/$step"`
 
 		(
 			. $step_script
 			. setup-script-environment
-			download_url=$(cat PACKAGES | grep $package | awk '{print $2}')
+			package=${PACKAGE:-${step%-pass2}}
 			do_download ${download_url}
 			build
 		)

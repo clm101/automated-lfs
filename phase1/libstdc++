@@ -1,5 +1,6 @@
 #!/bin/bash
 
+PACKAGE=gcc
 function build {
 	BUILD_DIR=build-c++
 

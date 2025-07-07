@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PACKAGE=linux-kernel
+
 function build {
 	make mrproper
 
