@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD=https://ftp.gnu.org/gnu/diffutils/diffutils-3.12.tar.xz
-
 function build {
 	./configure --prefix=/usr \
 				--host=$LFS_TGT \

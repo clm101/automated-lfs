@@ -1,3 +1,0 @@
-#!/bin/bash
-enable_pass2=
-. $(dirname `realpath $0`)/phase1/0-binutils

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD=https://ftp.gnu.org/gnu/gcc/gcc-15.1.0/gcc-15.1.0.tar.xz
-
 BUILD_PASS1_DIR=build-pass1
 BUILD_PASS2_DIR=build-pass2
 

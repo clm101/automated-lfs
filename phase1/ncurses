@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD=https://invisible-mirror.net/archives/ncurses/ncurses-6.5.tar.gz
-
 function build {
 	TIC_DIR=build-tic
 	if [ ! -d $TIC_DIR ]; then

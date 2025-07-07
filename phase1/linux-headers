@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD=https://git.kernel.org/torvalds/t/linux-6.15.tar.gz
-
 function build {
 	make mrproper
 

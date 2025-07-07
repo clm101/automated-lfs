@@ -1,4 +1,0 @@
-#!/bin/bash
-
-enable_pass2=
-. $(dirname `realpath $0`)/phase1/1-gcc

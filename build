@@ -78,18 +78,31 @@ function do_phase1 {
 		([ ! -v $variable ] || [ -z ${!variable} ]) && echo "required variable $variable is unset or empty" && exit 1;
 	done
 
+	steps=(binutils gcc linux-headers glibc libstdc++ \
+		   m4 ncurses bash coreutils diffutils file \
+		   findutils gawk grep gzip make patch sed tar xz \
+		   binutils-pass2 gcc-pass2)
+	if [ -v start_step ]; then
+		for i in $(seq ${#steps[@]}); do
+			j=$((i-1))
+			step=${steps[$j]}
+			if [ $step == $start_step ]; then
+				steps=${steps[@]:$j}
+				break
+			fi
+		done
+	fi
+
 	shopt -s extglob
-	for package in `ls -v phase1`; do
-		index=${package%%-*}
-		if [ $index -lt ${start_index:=-1} ]; then
-			continue
-		fi
-		package_script=`realpath "phase1/$package"`
+	for step in ${steps[@]}; do
+		package=${step%-pass2}
+		step_script=`realpath "phase1/$step"`
 
 		(
-			. $package_script
+			. $step_script
 			. setup-script-environment
-			do_download ${DOWNLOAD:?}
+			download_url=$(cat PACKAGES | grep $package | awk '{print $2}')
+			do_download ${download_url}
 			build
 		)
 	done;
@@ -131,7 +144,7 @@ function setup_chroot {
 	fi
 
 	sudo cp -rv ./chroot-scripts $LFS
-	sudo cp -rv setup-script-environment $LFS/chroot-scripts
+	sudo cp -rv setup-script-environment PACKAGES $LFS/chroot-scripts
 
 	. setup-script-environment
 	. chroot-scripts/PACKAGES
@@ -166,7 +179,7 @@ while getopts ":bcs:l:" option; do
 	case $option in
 		b) do_build= ;;
 		c) setup_lfs; setup_chroot; exit 0;;
-		s) start_index=$OPTARG;;
+		s) start_step=$OPTARG;;
 		l) lfs_device=$OPTARG;;
 		*) 
 			echo "bad option: " $option
