@@ -105,6 +105,7 @@ function do_phase1 {
 			. $step_script
 			. setup-script-environment
 			package=${PACKAGE:-${step%-pass2}}
+			download_url=$(cat PACKAGES | grep "^$package" | awk '{print $2}')
 			do_download ${download_url}
 			build
 		)
