@@ -26,6 +26,8 @@ function setup_lfs {
 
 	if [ ! -d $LFS ]; then
 		sudo mkdir -pv $LFS
+		sudo chown root:root $LFS
+		sudo chmod 755 $LFS
 	fi
 
 	(
