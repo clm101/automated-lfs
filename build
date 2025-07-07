@@ -89,7 +89,8 @@ function do_phase1 {
 			j=$((i-1))
 			step=${steps[$j]}
 			if [ $step == $start_step ]; then
-				steps=${steps[@]:$j}
+				steps=(${steps[@]:$j})
+				echo starting at step ${steps[0]}
 				break
 			fi
 		done
