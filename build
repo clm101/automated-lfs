@@ -3,6 +3,7 @@
 set +h
 set -e
 set -u
+set -x
 
 function setup_lfs {
 	BUILD_USER=$USER
