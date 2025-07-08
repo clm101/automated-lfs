@@ -3,7 +3,12 @@
 DOWNLOAD_URL=https://sourceforge.net/projects/expect/files/Expect/5.45.4/expect5.45.4.tar.gz
 
 do_build() {
-# TODO: python3 -c 'from pty import spawn; spawn(["echo", "ok"])'
+	pty_result=$(python3 -c 'from pty import spawn; spawn(["echo", "ok"])')
+	if [ "ok" != $pty_result ]; then
+		echo "failed spawning pty during 'expect' installation: $pty_result"
+		exit 1
+	fi
+	wget -P .. https://www.linuxfromscratch.org/patches/lfs/development/expect-5.45.4-gcc15-1.patch
 	patch -Np1 -i ../expect-5.45.4-gcc15-1.patch
 	./configure --prefix=/usr           \
             --with-tcl=/usr/lib     \
