@@ -153,6 +153,21 @@ function setup_chroot {
 
 	. setup-script-environment
 	. chroot-scripts/ORDERED_SCRIPTS
+	local ordered_scripts=(${SCRIPTS[@]})
+	if [ -v start_step ]; then
+		for i in $(seq ${#ordered_scripts[@]}); do
+			j=$((i-1))
+			step=${ordered_scripts[$j]}
+			if [ $step == $start_step ]; then
+				ordered_scripts=(${ordered_scripts[@]:$j})
+				echo starting at step ${ordered_scripts[0]}
+				break
+			fi
+		done
+	fi
+
+	echo steps are ${ordered_scripts[@]}
+
 	for script in ${SCRIPTS[@]}; do
 		(
 			package=${PACKAGE:-${script%-pass2}}
@@ -169,6 +184,7 @@ function setup_chroot {
 				PATH=/usr/bin:/usr/sbin		\
 				MAKEFLAGS="-j$(nproc)"		\
 				TESTSUITEFLAGS="-j$(nproc)"	\
+				LFS_PACKAGE_BUILD_ORDER=$(printf '%s:' "${ordered_scripts[@]}") \
 				/bin/bash /chroot-scripts/manager
 }
 

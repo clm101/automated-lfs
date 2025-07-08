@@ -1,7 +1,9 @@
 #!/bin/bash
 
-. /chroot-scripts/ORDERED_SCRIPTS
-STEPS=(lfs-copy ${SCRIPTS[@]} lfs-cleanup lfs-setup-font lfs-setup-profile lfs-create-fstab)
+#. /chroot-scripts/ORDERED_SCRIPTS
+STEPS=(lfs-copy ${LFS_PACKAGE_BUILD_ORDER//:/" "} lfs-cleanup lfs-setup-font lfs-setup-profile lfs-create-fstab)
+echo steps are ${STEPS[@]}
+
 set -e
 set -u
 set -x
