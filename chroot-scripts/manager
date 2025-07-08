@@ -4,6 +4,7 @@
 STEPS=(lfs-copy ${SCRIPTS[@]} lfs-cleanup lfs-setup-font lfs-setup-profile lfs-create-fstab)
 set -e
 set -u
+set -x
 
 . /chroot-scripts/setup-script-environment
 pushd /sources
