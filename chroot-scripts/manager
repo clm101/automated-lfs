@@ -15,8 +15,9 @@ for step in ${STEPS[@]}; do
 			package=${PACKAGE:-${step%-pass2}}
 			download_url=$(cat /chroot-scripts/PACKAGES | grep "^$package" | awk '{print $2}')
 			parse_link $download_url
+			pushd $source_directory
 			decompressed_archive=$(get_decompressed_archive $package_archive)
-			pushd $decompressed_archive
+			pushd ${decompressed_archive:?variable is not set}
 			do_build
 		fi
 	)
