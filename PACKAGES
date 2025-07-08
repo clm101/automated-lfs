@@ -60,7 +60,7 @@ ninja https://github.com/ninja-build/ninja/archive/v1.13.0/ninja-1.13.0.tar.gz
 openssl https://github.com/openssl/openssl/releases/download/openssl-3.5.1/openssl-3.5.1.tar.gz
 packaging https://files.pythonhosted.org/packages/source/p/packaging/packaging-25.0.tar.gz
 patch https://ftp.gnu.org/gnu/patch/patch-2.8.tar.xz
-perl https://www.cpan.org/src/5.0/perl-5.41.9.tar.xz
+perl https://www.cpan.org/src/5.0/perl-5.42.0.tar.xz
 pkgconf https://distfiles.ariadne.space/pkgconf/pkgconf-2.5.1.tar.xz
 procps-ng https://sourceforge.net/projects/procps-ng/files/Production/procps-ng-4.0.5.tar.xz
 psmisc https://sourceforge.net/projects/psmisc/files/psmisc/psmisc-23.7.tar.xz
