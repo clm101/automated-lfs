@@ -151,11 +151,13 @@ function setup_chroot {
 	sudo cp -rv setup-script-environment PACKAGES $LFS/chroot-scripts
 
 	. setup-script-environment
-	. chroot-scripts/PACKAGES
+	. chroot-scripts/ORDERED_SCRIPTS
 	for script in ${SCRIPTS[@]}; do
 		(
-			. chroot-scripts/$script
-			do_download $DOWNLOAD_URL
+			package=${PACKAGE:-${script%-pass2}}
+			download_url=$(cat PACKAGES | grep "^$package" | awk '{print $2}')
+			echo attempting to download $package from $download_url
+			do_download $download_url
 		)
 	done
 
