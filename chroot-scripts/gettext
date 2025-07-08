@@ -12,7 +12,7 @@ do_build() {
 		chmod -v 0755 /usr/lib/preloadable_libintl.so
 	else
 		./configure --disable-shared
-		
+		make
 		cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
 	fi
 }
