@@ -65,17 +65,16 @@ function do_pass2 {
 }
 
 function get_dependencies {
-	dependencies=(https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.2.tar.xz https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz)
-	for dependency in "${dependencies[@]}"; do
-		archive=`basename $dependency`
-		decompressed_archive=${archive%.tar.*}
-		dependency_name=${decompressed_archive%-*}
-		if [ ! -e ../$archive ]; then
-			wget -P .. $dependency
-		fi
-		if [ ! -d $dependency_name ]; then
-			tar -xf ../$archive
-			mv -v $decompressed_archive $dependency_name
+	local sources_dir=${LFS:-}/sources
+	for package in mpfr mpc gmp; do
+		if [ ! -d $package ]; then
+			local url=$(cat $PACKAGES_PATH | grep "^$package" | awk '{ print $2 }')
+			local archive=$(basename $url)
+			pushd $sources_dir/$package
+			local decompressed_archive=$(get_decompressed_archive $archive)
+			popd
+			tar -xf $sources_dir/$package/$archive
+			mv -v $decompressed_archive $package
 		fi
 	done
 }

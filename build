@@ -107,6 +107,7 @@ function do_phase1 {
 		echo "checking variable $variable with value ${!variable}"
 		([ ! -v $variable ] || [ -z ${!variable} ]) && echo "required variable $variable is unset or empty" && exit 1;
 	done
+	PACKAGES_PATH=$(realpath PACKAGES)
 
 	steps=(binutils gcc linux-headers glibc libstdc++ \
 		   m4 ncurses bash coreutils diffutils file \
