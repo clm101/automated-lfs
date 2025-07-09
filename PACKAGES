@@ -44,7 +44,7 @@ libpipeline https://mirrors.ocf.berkeley.edu/nongnu/libpipeline/libpipeline-1.5.
 libtool https://ftp.gnu.org/gnu/libtool/libtool-2.5.4.tar.xz
 libxcrypt https://github.com/besser82/libxcrypt/releases/download/v4.4.38/libxcrypt-4.4.38.tar.xz
 linux-firmware https://gitlab.com/kernel-firmware/linux-firmware/-/archive/20250627/linux-firmware-20250627.tar.gz
-linux-kernel https://git.kernel.org/torvalds/t/linux-6.16-rc4.tar.gz
+linux-kernel https://git.kernel.org/torvalds/t/linux-6.16-rc5.tar.gz
 linux-pam https://github.com/linux-pam/linux-pam/releases/download/v1.7.1/Linux-PAM-1.7.1.tar.xz
 lz4 https://github.com/lz4/lz4/releases/download/v1.10.0/lz4-1.10.0.tar.gz
 m4 https://ftp.gnu.org/gnu/m4/m4-1.4.20.tar.xz
