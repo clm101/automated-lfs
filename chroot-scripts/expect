@@ -2,7 +2,7 @@
 
 do_build() {
 	pty_result=$(python3 -c 'from pty import spawn; spawn(["echo", "ok"])')
-	if [ "ok" != $pty_result ]; then
+	if [ ok != ${pty_result/[[:space:]]/''} ]; then
 		echo "failed spawning pty during 'expect' installation: $pty_result"
 		exit 1
 	fi
