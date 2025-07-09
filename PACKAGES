@@ -6,15 +6,15 @@ bash https://ftp.gnu.org/gnu/bash/bash-5.3-rc2.tar.gz
 bc https://github.com/gavinhoward/bc/releases/download/7.0.3/bc-7.0.3.tar.xz
 binutils https://sourceware.org/pub/binutils/releases/binutils-2.44.tar.xz
 bison https://ftp.gnu.org/gnu/bison/bison-3.8.2.tar.xz
-bzip2 https://www.sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz
-coreutils https://ftp.gnu.org/gnu/coreutils/coreutils-9.7.tar.xz
+bzip2 https://www.sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz https://www.linuxfromscratch.org/patches/lfs/development/bzip2-1.0.8-install_docs-1.patch
+coreutils https://ftp.gnu.org/gnu/coreutils/coreutils-9.7.tar.xz https://www.linuxfromscratch.org/patches/lfs/development/coreutils-9.7-upstream_fix-1.patch https://www.linuxfromscratch.org/patches/lfs/development/coreutils-9.7-i18n-1.patch
 dbus https://dbus.freedesktop.org/releases/dbus/dbus-1.16.2.tar.xz
 dejagnu https://ftp.gnu.org/gnu/dejagnu/dejagnu-1.6.3.tar.gz
 diffutils https://ftp.gnu.org/gnu/diffutils/diffutils-3.12.tar.xz
 e2fsprogs https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.47.2/e2fsprogs-1.47.2.tar.gz
 elfutils https://sourceware.org/ftp/elfutils/0.193/elfutils-0.193.tar.bz2
 expat https://github.com/libexpat/libexpat/releases/download/R_2_7_1/expat-2.7.1.tar.xz
-expect https://sourceforge.net/projects/expect/files/Expect/5.45.4/expect5.45.4.tar.gz
+expect https://sourceforge.net/projects/expect/files/Expect/5.45.4/expect5.45.4.tar.gz https://www.linuxfromscratch.org/patches/lfs/development/expect-5.45.4-gcc15-1.patch
 file https://astron.com/pub/file/file-5.46.tar.gz
 findutils https://ftp.gnu.org/gnu/findutils/findutils-4.10.0.tar.xz
 flex https://github.com/westes/flex/releases/download/v2.6.4/flex-2.6.4.tar.gz
@@ -23,7 +23,7 @@ gawk https://ftp.gnu.org/gnu/gawk/gawk-5.3.2.tar.xz
 gcc https://ftp.gnu.org/gnu/gcc/gcc-15.1.0/gcc-15.1.0.tar.xz
 gdbm https://ftp.gnu.org/gnu/gdbm/gdbm-1.25.tar.gz
 gettext https://ftp.gnu.org/gnu/gettext/gettext-0.25.tar.xz
-glibc https://ftp.gnu.org/gnu/glibc/glibc-2.41.tar.xz
+glibc https://ftp.gnu.org/gnu/glibc/glibc-2.41.tar.xz https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.41-fhs-1.patch https://www.iana.org/time-zones/repository/releases/tzdata2025b.tar.gz
 gmp https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz
 gperf https://ftp.gnu.org/gnu/gperf/gperf-3.3.tar.gz
 grep https://ftp.gnu.org/gnu/grep/grep-3.12.tar.xz
@@ -35,7 +35,7 @@ inetutils https://ftp.gnu.org/gnu/inetutils/inetutils-2.6.tar.xz
 intltool https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
 iproute2 https://www.kernel.org/pub/linux/utils/net/iproute2/iproute2-6.15.0.tar.xz
 jinja2 https://pypi.org/packages/source/J/Jinja2/jinja2-3.1.6.tar.gz
-kbd https://www.kernel.org/pub/linux/utils/kbd/kbd-2.8.0.tar.xz
+kbd https://www.kernel.org/pub/linux/utils/kbd/kbd-2.8.0.tar.xz https://www.linuxfromscratch.org/patches/lfs/development/kbd-2.8.0-backspace-1.patch
 kmod https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-34.2.tar.xz
 less https://www.greenwoodsoftware.com/less/less-679.tar.gz
 libcap https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-2.76.tar.xz
