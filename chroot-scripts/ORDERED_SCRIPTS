@@ -80,6 +80,17 @@ SCRIPTS=(gettext
 		vim 
 		markup 
 		jinja2 
+		libunistring
+		icu
+		libxml2
+		pcre2
+		nettle
+		lzo
+		libarchive
+		docbook-xml
+		docbook-xsl-nons
+		libxslt
+		lxml
 		systemd 
 		dbus 
 		mandb 
