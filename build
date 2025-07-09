@@ -80,7 +80,7 @@ download_packages() {
 		for url in ${urls[@]}; do
 			local target=$(basename $url)
 			if [ ! -e $target ]; then
-				wget $target
+				wget $url
 			fi
 		done
 		
