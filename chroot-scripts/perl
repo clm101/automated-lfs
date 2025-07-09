@@ -1,20 +1,20 @@
 #!/bin/bash
 
 do_build() {
-	configure_args="-des                                         \
-	             -D prefix=/usr                               \
-	             -D vendorprefix=/usr                         \
-	             -D useshrplib                                \
-	             -D privlib=/usr/lib/perl5/5.41/core_perl     \
-	             -D archlib=/usr/lib/perl5/5.41/core_perl     \
-	             -D sitelib=/usr/lib/perl5/5.41/site_perl     \
-	             -D sitearch=/usr/lib/perl5/5.41/site_perl    \
-	             -D vendorlib=/usr/lib/perl5/5.41/vendor_perl \
+	configure_args="-des
+	             -D prefix=/usr
+	             -D vendorprefix=/usr
+	             -D useshrplib
+	             -D privlib=/usr/lib/perl5/5.41/core_perl
+	             -D archlib=/usr/lib/perl5/5.41/core_perl
+	             -D sitelib=/usr/lib/perl5/5.41/site_perl
+	             -D sitearch=/usr/lib/perl5/5.41/site_perl
+	             -D vendorlib=/usr/lib/perl5/5.41/vendor_perl
 	             -D vendorarch=/usr/lib/perl5/5.41/vendor_perl"
 	if [ -v DO_SECOND_PASS ]; then
-		configure_args+=" -D man1dir=/usr/share/man/man1 \
-			             -D man3dir=/usr/share/man/man3  \
-			             -D pager="/usr/bin/less -isR"   \
+		configure_args+="-D man1dir=/usr/share/man/man1
+			             -D man3dir=/usr/share/man/man3
+			             -D pager=\"/usr/bin/less -isR\"
 						 -D usethreads"
 	fi
 
