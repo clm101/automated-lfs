@@ -33,9 +33,6 @@ do_build() {
 	ninja
 	ninja install
 
-	tar -xf ../../systemd-man-pages-257.6.tar.xz \
-		--no-same-owner --strip-components=1     \
-		-C /usr/share/man
 	cp /chroot-scripts/extras/systemd-user /etc/pam.d
 	systemd-machine-id-setup
 	systemctl preset-all
