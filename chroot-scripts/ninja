@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://github.com/ninja-build/ninja/archive/v1.13.0/ninja-1.13.0.tar.gz
-
 do_build() {
 	sed -i '/int Guess/a \
 	  int   j = 0;\

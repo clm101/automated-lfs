@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://www.cpan.org/src/5.0/perl-5.41.9.tar.xz
-
 do_build() {
 	configure_args="-des                                         \
 	             -D prefix=/usr                               \

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.2.tar.xz
-
 do_build() {
 	./configure --prefix=/usr        \
 	            --disable-static     \

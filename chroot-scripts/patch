@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/patch/patch-2.8.tar.xz
-
 do_build() {
 	./configure --prefix=/usr
 	make

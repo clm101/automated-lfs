@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/texinfo/texinfo-7.2.tar.xz
-
 do_build() {
 	./configure --prefix=/usr
 	make

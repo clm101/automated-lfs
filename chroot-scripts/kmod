@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-34.2.tar.xz
-
 do_build() {
 	mkdir -p build
 	cd       build

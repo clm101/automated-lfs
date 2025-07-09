@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://github.com/vim/vim/archive/v9.1.1500/vim-9.1.1500.tar.gz
-
 do_build() {
 	echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
 

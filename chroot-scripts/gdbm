@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/gdbm/gdbm-1.25.tar.gz
-
 do_build() {
 	./configure --prefix=/usr \
 				--disable-static \

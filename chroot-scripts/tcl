@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://sourceforge.net/projects/tcl/files/Tcl/9.0.1/tcl9.0.1-src.tar.gz
-
 do_build() {
 	SRCDIR=$(pwd)
 	cd unix

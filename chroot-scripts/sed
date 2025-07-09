@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/sed/sed-4.9.tar.xz
-
 do_build() {
 	./configure --prefix=/usr
 	make

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/gperf/gperf-3.3.tar.gz
-
 do_build() {
 	./configure --prefix=/usr --docdir=/usr/share/doc/gperf-3.3
 	make

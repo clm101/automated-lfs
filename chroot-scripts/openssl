@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://github.com/openssl/openssl/releases/download/openssl-3.5.1/openssl-3.5.1.tar.gz
-
 do_build() {
 	./config --prefix=/usr         \
 	         --openssldir=/etc/ssl \

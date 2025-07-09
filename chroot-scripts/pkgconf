@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://distfiles.ariadne.space/pkgconf/pkgconf-2.5.1.tar.xz
-
 do_build() {
 	./configure --prefix=/usr \
 				--disable-static \

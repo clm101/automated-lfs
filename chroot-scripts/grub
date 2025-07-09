@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/grub/grub-2.12.tar.xz
-
 do_build() {
 	unset {C,CPP,CXX,LD}FLAGS
 

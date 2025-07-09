@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://nongnu.askapache.com/man-db/man-db-2.13.1.tar.xz
-
 do_build() {
 	./configure --prefix=/usr                         \
 	            --docdir=/usr/share/doc/man-db-2.13.1 \

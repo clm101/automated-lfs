@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://sourceforge.net/projects/procps-ng/files/Production/procps-ng-4.0.5.tar.xz
-
 do_build() {
 	./configure --prefix=/usr                           \
 	            --docdir=/usr/share/doc/procps-ng-4.0.5 \

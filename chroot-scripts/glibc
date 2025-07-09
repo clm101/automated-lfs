@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/glibc/glibc-2.41.tar.xz
-
 do_build() {
 	set +e
 	patch -Np1 -i ../glibc-2.41-fhs-1.patch

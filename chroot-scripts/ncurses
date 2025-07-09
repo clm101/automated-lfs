@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://invisible-mirror.net/archives/ncurses/current/ncurses.tar.gz
-
 do_build() {
 	./configure --prefix=/usr           \
 	            --mandir=/usr/share/man \

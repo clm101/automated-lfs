@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/gettext/gettext-0.25.tar.xz
-
 do_build() {
 	if [ -v DO_SECOND_PASS ]; then
 		./configure --prefix=/usr    \

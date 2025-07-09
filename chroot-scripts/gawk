@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/gawk/gawk-5.3.2.tar.xz
-
 do_build() {
 	sed -i 's/extras//' Makefile.in
 
