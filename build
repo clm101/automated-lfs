@@ -74,7 +74,7 @@ download_packages() {
 		local package_archive=$(basename ${urls[0]})
 		
 		if [ ! -d $LFS/sources/$package ]; then
-			mkdir -v $LFS/sources$package
+			mkdir -v $LFS/sources/$package
 		fi
 		pushd $LFS/sources/$package
 		for url in ${urls[@]}; do
