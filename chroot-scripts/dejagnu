@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/dejagnu/dejagnu-1.6.3.tar.gz
-
 do_build() {
 	set +e
 	mkdir -v build

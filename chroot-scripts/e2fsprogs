@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.47.2/e2fsprogs-1.47.2.tar.gz
-
 do_build() {
 	set +e
 	mkdir -v build

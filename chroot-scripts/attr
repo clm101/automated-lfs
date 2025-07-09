@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://mirrors.ocf.berkeley.edu/nongnu/attr/attr-2.5.2.tar.xz
-
 do_build() {
 	./configure --prefix=/usr     \
 	            --disable-static  \

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://sourceforge.net/projects/expect/files/Expect/5.45.4/expect5.45.4.tar.gz
-
 do_build() {
 	pty_result=$(python3 -c 'from pty import spawn; spawn(["echo", "ok"])')
 	if [ "ok" != $pty_result ]; then

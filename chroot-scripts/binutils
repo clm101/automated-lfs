@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://sourceware.org/pub/binutils/releases/binutils-2.44.tar.xz
-
 do_build() {
 	set +e
 	mkdir -v build-chroot

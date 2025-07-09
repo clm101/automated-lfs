@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://dbus.freedesktop.org/releases/dbus/dbus-1.16.2.tar.xz
-
 do_build() {
 	set +e
 	mkdir build

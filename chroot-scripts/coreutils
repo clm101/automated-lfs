@@ -1,7 +1,5 @@
 #!/bin/bash
 
-DOWNLOAD_URL=https://ftp.gnu.org/gnu/coreutils/coreutils-9.7.tar.xz
-
 do_build() {
 	wget -P .. https://www.linuxfromscratch.org/patches/lfs/development/coreutils-9.7-upstream_fix-1.patch
 	wget -P .. https://www.linuxfromscratch.org/patches/lfs/development/coreutils-9.7-i18n-1.patch
