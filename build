@@ -70,7 +70,7 @@ function setup_lfs {
 download_packages() {
 	while read entry; do
 		local package=$(echo $entry | awk '{ print $1 }')
-		local urls=($(echo $entry | awk 'urls=""; for(i=2; i<=NF; i+=1) urls=urls $i " "; print urls }'))
+		local urls=($(echo $entry | awk '{ urls=""; for(i=2; i<=NF; i+=1) urls=urls $i " "; print urls }'))
 		local package_archive=$(basename ${urls[0]})
 		
 		if [ ! -d $LFS/sources/$package ]; then
