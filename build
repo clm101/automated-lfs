@@ -204,6 +204,7 @@ function setup_chroot {
 				MAKEFLAGS="-j$(nproc)"		\
 				TESTSUITEFLAGS="-j$(nproc)"	\
 				LFS_PACKAGE_BUILD_ORDER=$(printf '%s:' "${ordered_scripts[@]}") \
+				LFS_CHROOT=1 \
 				/bin/bash /chroot-scripts/manager
 }
 
