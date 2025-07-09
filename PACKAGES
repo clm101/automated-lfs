@@ -71,7 +71,7 @@ setuptools https://pypi.org/packages/source/s/setuptools/setuptools-80.9.0.tar.g
 shadow https://github.com/shadow-maint/shadow/releases/download/4.18.0/shadow-4.18.0.tar.xz
 systemd https://github.com/systemd/systemd/archive/v257.7/systemd-257.7.tar.gz
 tar https://ftp.gnu.org/gnu/tar/tar-1.35.tar.xz
-tcl https://sourceforge.net/projects/tcl/files/Tcl/9.0.1/tcl9.0.1-src.tar.gz
+tcl https://sourceforge.net/projects/tcl/files/Tcl/8.6.16/tcl8.6.16-src.tar.gz https://sourceforge.net/projects/tcl/files/Tcl/8.6.16/tcl8.6.16-html.tar.gz
 texinfo https://ftp.gnu.org/gnu/texinfo/texinfo-7.2.tar.xz
 util-linux https://www.kernel.org/pub/linux/utils/util-linux/v2.41/util-linux-2.41.1.tar.xz
 vim https://github.com/vim/vim/archive/v9.1.1500/vim-9.1.1500.tar.gz
