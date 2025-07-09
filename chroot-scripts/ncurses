@@ -15,7 +15,9 @@ do_build() {
 	rm -v  dest/usr/lib/libncursesw.so.6.5
 	sed -e 's/^#if.*XOPEN.*$/#if 1/' \
 	    -i dest/usr/include/curses.h
+	set +e
 	cp -av dest/* /
+	set -e
 
 	for lib in ncurses form panel menu ; do
 	    ln -sfv lib${lib}w.so /usr/lib/lib${lib}.so
