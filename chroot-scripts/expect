@@ -6,8 +6,9 @@ do_build() {
 		echo "failed spawning pty during 'expect' installation: $pty_result"
 		exit 1
 	fi
-	wget -P .. https://www.linuxfromscratch.org/patches/lfs/development/expect-5.45.4-gcc15-1.patch
+	set +e
 	patch -Np1 -i ../expect-5.45.4-gcc15-1.patch
+	set -e
 	./configure --prefix=/usr           \
             --with-tcl=/usr/lib     \
             --enable-shared         \
