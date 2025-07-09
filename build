@@ -57,12 +57,10 @@ function setup_lfs {
 		fi
 	done
 
-	set -x
 	relaxed_directories=(usr{,/*} var etc tools lib64)
 	for directory in ${relaxed_directories[@]}; do
 		sudo chown -v $BUILD_USER $LFS/$directory;
 	done
-	set +x
 }
 
 function DEFAULT_CONFIGURE_ARGS {
