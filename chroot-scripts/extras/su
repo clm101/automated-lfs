@@ -1,0 +1,17 @@
+auth	sufficient	pam_rootok.so
+
+# Allow users in the wheel group to execute su without a password
+# disabled by default
+#auth	sufficient	pam_wheel.so trust use_uid
+
+auth	include		system-auth
+
+# limit su to users in the wheel group
+# disabled by default
+#auth	required	pam_wheel.so use_uid
+
+account	include		system-account
+
+session	required	pam_env.so
+
+session	include		system-session

@@ -1,0 +1,5 @@
+auth	sufficient	pam_rootok.so
+
+auth	include		system-auth
+auth	include		system-account
+auth	include		system-password
