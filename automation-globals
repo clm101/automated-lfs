@@ -1,0 +1,9 @@
+#!/bin/bash
+
+get_decompressed_archive() {
+	local decompressed_archive=$(tar -tf $1 | head -n 1)
+	decompressed_archive=${decompressed_archive%%/*}
+	echo $decompressed_archive
+}
+
+# TODO: the build process can probably be put in here too
