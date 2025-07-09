@@ -1,8 +1,12 @@
 #!/bin/bash
 
 get_decompressed_archive() {
-	local decompressed_archive=$(tar -tf $1 | head -n 1)
-	decompressed_archive=${decompressed_archive%%/*}
+	if [ .zip == ${1: -4} ]; then
+		local decompressed_archive=${1%.zip}
+	else
+		local decompressed_archive=$(tar -tf $1 | head -n 1)
+		decompressed_archive=${decompressed_archive%%/*}
+	fi
 	echo $decompressed_archive
 }
 

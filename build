@@ -86,7 +86,11 @@ download_packages() {
 		
 		local package_directory=$(get_decompressed_archive $package_archive)
 		if [ ! -d $package_directory ]; then
-			tar -xf $package_archive
+			if [ .zip == ${package_archive: -4} ]; then
+				unzip -d $package_directory $package_archive
+			else
+				tar -xf $package_archive
+			fi
 		fi
 		popd
 	done < PACKAGES
