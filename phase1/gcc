@@ -60,7 +60,7 @@ function do_pass2 {
 				 --disable-libssp \
 				 --disable-libvtv \
 				 --enable-languages=c,c++ && make && make DESTDIR=$LFS install
-	ln -sv gcc $LFS/usr/bin/cc
+	ln -svf gcc $LFS/usr/bin/cc
 	popd > /dev/null
 }
 
