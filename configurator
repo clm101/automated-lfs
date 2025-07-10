@@ -1,0 +1,28 @@
+#!/bin/bash
+
+get_config_file() {
+	while read -p "Enter path to config file or q to quit: " input; do
+		case $input in
+			q|Q) break;;
+			*) process_config_input $input && break || echo "error getting config file, try again";;
+		esac
+	done
+}
+
+process_config_input() {
+	if [ ! -e $1 ]; then
+		echo "error: config does not exist at $(realpath $1)"
+		return 1
+	else
+
+
+while read -p "[Q]uit, [C]onfigure kernel, [P]oint to config file: " input; do
+	case $input in
+		q|Q) break;;
+		c|C) make -C linux-6.16-rc5 menuconfig;;
+		p|P) get_config_file;;
+		*) echo "unrecognized option";;
+	esac
+done
+
+echo "user has closed the script"
