@@ -3,18 +3,38 @@
 FIRMWARE_SOURCES=${LFS:-/mnt}/sources/linux-firmware/linux-firmware-20250627
 pushd $FIRMWARE_SOURCES
 
+join_by() {
+	local IFS="$1"
+	shift
+	echo "$*"
+}
+
 for match in $(sudo dmesg | grep -Eo 'Loading firmware from .+$' | cut -d ' ' -f 4); do
 	host_path=${match%.zst}
-	repo_path=${match#/lib/firmware/}
-	echo Looking for firmware path $repo_path
+	host_path=${host_path#/lib/firmware/}
 
-	components=(${repo_path//\//' '})
-	echo -e "\tcomponents=${components[@]}(${components})"
+	components=(${host_path//\//' '})
 	vendor=${components[0]}
-
+	repo_path=($vendor)
 	for component in ${components[@]:1}; do
-		echo -e "\tprocessing component $component"
+		target=$(cat WHENCE | grep -Po "(?<=Link: $(join_by '/' ${repo_path[@]} $component) -> ).+")
+		if [ $? -eq 0 ]; then
+			for target_component in $(echo ${target//\//' '}); do
+				case $target_component in
+					..) repo_path=(${repo_path[@]::(${#repo_path[@]}-1)});;
+					*)  repo_path[${#repo_path[@]}]=$target_component;;
+				esac
+			done
+		else
+			repo_path[${#repo_path[@]}]=$component
+		fi
 	done
+
+	if [ -e "$FIRMWARE_SOURCES/$(join_by '/' ${repo_path[@]})" ]; then
+		echo "host match $match is located in $(join_by '/' ${repo_path[@]})"
+	else
+		echo "did not find $match in repo"
+	fi
 done
 
 popd 
