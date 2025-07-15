@@ -1,0 +1,20 @@
+#!/bin/bash
+
+FIRMWARE_SOURCES=${LFS:-/mnt}/sources/linux-firmware/linux-firmware-20250627
+pushd $FIRMWARE_SOURCES
+
+for match in $(sudo dmesg | grep -Eo 'Loading firmware from .+$' | cut -d ' ' -f 4); do
+	host_path=${match%.zst}
+	repo_path=${match#/lib/firmware/}
+	echo Looking for firmware path $repo_path
+
+	components=(${repo_path//\//' '})
+	echo -e "\tcomponents=${components[@]}(${components})"
+	vendor=${components[0]}
+
+	for component in ${components[@]:1}; do
+		echo -e "\tprocessing component $component"
+	done
+done
+
+popd 
