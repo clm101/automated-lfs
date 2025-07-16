@@ -1,16 +1,29 @@
 #!/bin/bash
 
-#. /chroot-scripts/ORDERED_SCRIPTS
-STEPS=(lfs-copy ${LFS_PACKAGE_BUILD_ORDER//:/" "} lfs-cleanup lfs-setup-font lfs-setup-profile lfs-create-fstab)
-echo steps are ${STEPS[@]}
+. /chroot-scripts/ORDERED_SCRIPTS
+scripts=(lfs-copy ${SCRIPTS[@]} lfs-cleanup lfs-setup-font lfs-setup-profile lfs-create-fstab)
 
 set -e
 set -u
 set -x
 
 . /chroot-scripts/automation-globals
+
+if [ ! -z ${LFS_CHROOT_START_SCRIPT:-} ]; then
+	for i in $(seq ${#scripts[@]}); do
+		j=$((i-1))
+		script=${scripts[$j]}
+		if [ $script == $LFS_CHROOT_START_SCRIPT ]; then
+			scripts=(${scripts[@]:$j})
+			echo starting at script ${scripts[0]}
+			break
+		fi
+	done
+fi
+
+echo "script order is ${scripts[@]}"
 pushd /sources
-for step in ${STEPS[@]}; do
+for script in ${scripts[@]}; do
 	(
 		. /chroot-scripts/$script
 		if [ ! -z ${script##lfs-*} ]; then

@@ -177,24 +177,8 @@ function setup_chroot {
 		lfs_mount sudo mount -vt tmpfs -o nosuid,nodev tmpfs $LFS/dev/shm
 	fi
 
-	sudo cp -rv ./chroot-scripts $LFS
-	sudo cp -rv automation-globals PACKAGES $LFS/chroot-scripts
-
-	. chroot-scripts/ORDERED_SCRIPTS
-	local ordered_scripts=(${SCRIPTS[@]})
-	if [ -v start_step ]; then
-		for i in $(seq ${#ordered_scripts[@]}); do
-			j=$((i-1))
-			step=${ordered_scripts[$j]}
-			if [ $step == $start_step ]; then
-				ordered_scripts=(${ordered_scripts[@]:$j})
-				echo starting at step ${ordered_scripts[0]}
-				break
-			fi
-		done
-	fi
-
-	echo steps are ${ordered_scripts[@]}
+	sudo cp -Rv ./chroot-scripts $LFS
+	sudo cp -Rv automation-globals PACKAGES $LFS/chroot-scripts
 
 	sudo chroot "$LFS" /usr/bin/env -i \
 				HOME=/root		\
@@ -203,8 +187,8 @@ function setup_chroot {
 				PATH=/usr/bin:/usr/sbin		\
 				MAKEFLAGS="-j$(nproc)"		\
 				TESTSUITEFLAGS="-j$(nproc)"	\
-				LFS_PACKAGE_BUILD_ORDER=$(printf '%s:' "${ordered_scripts[@]}") \
 				LFS_CHROOT=1 \
+				LFS_CHROOT_START_SCRIPT=${start_script:-} \
 				/bin/bash /chroot-scripts/manager
 }
 
