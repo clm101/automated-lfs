@@ -37,6 +37,7 @@ SCRIPTS=(gettext
 		psmisc 
 		gettext-pass2 
 		bison 
+		pcre2
 		grep 
 		bash 
 		libtool 
@@ -83,7 +84,6 @@ SCRIPTS=(gettext
 		libunistring
 		icu
 		libxml2
-		pcre2
 		nettle
 		lzo
 		libarchive
