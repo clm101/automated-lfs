@@ -1,0 +1,69 @@
+#!/bin/bash
+
+join_by() {
+	local IFS="$1"
+	shift
+	echo "$*"
+}
+
+get_firmwares() {
+	PACKAGE=linux-firmware enter_package_source
+	firmwares=()
+	for match in $(dmesg | grep -Eo 'Loading firmware from .+$' | cut -d ' ' -f 4); do
+		host_path=${match%.zst}
+		host_path=${host_path#/lib/firmware/}
+	
+		components=(${host_path//\//' '})
+		vendor=${components[0]}
+		repo_path=($vendor)
+		for component in ${components[@]:1}; do
+			set +e
+			target=$(cat WHENCE | grep -Po "(?<=Link: $(join_by '/' ${repo_path[@]} $component) -> ).+")
+			if [ $? -eq 0 ]; then
+				for target_component in $(echo ${target//\//' '}); do
+					case $target_component in
+						..) repo_path=(${repo_path[@]::(${#repo_path[@]}-1)});;
+						*)  repo_path[${#repo_path[@]}]=$target_component;;
+					esac
+				done
+			else
+				repo_path[${#repo_path[@]}]=$component
+			fi
+			set -e
+		done
+	
+		if [ -e $(join_by '/' ${repo_path[@]}) ]; then
+			firmwares[${#firmwares[@]}]=$(join_by '/' ${repo_path[@]})
+		else
+			echo "did not find $match in repo"
+		fi
+	done
+
+	cp -Rv --parents ${firmwares[@]} /lib/firmware
+	popd
+	popd
+}
+
+do_build() {
+	set +e
+	make mrproper
+	set -e
+
+	get_firmwares	
+	
+	make x86_64_defconfig
+	local program="/CONFIG_EXTRA_FIRMWARE=/ c CONFIG_EXTRA_FIRMWARE=\"${firmwares[@]}\""
+	sed "$program" -i .config
+	make oldconfig
+
+	make menuconfig
+	make
+	make modules_install
+
+	cp -iv arch/x86/boot/bzImage /boot/vmlinuz-6.16-lfs
+	cp -iv System.map /boot/System.map-6.16
+
+	cp -iv .config /boot/config-6.16
+
+	cp -r Documentation -T /usr/share/doc/linux-6.16
+}
