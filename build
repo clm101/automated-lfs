@@ -117,11 +117,11 @@ function do_phase1 {
 		   m4 ncurses bash coreutils diffutils file \
 		   findutils gawk grep gzip make patch sed tar xz \
 		   binutils-pass2 gcc-pass2)
-	if [ -v start_step ]; then
+	if [ -v start_script ]; then
 		for i in $(seq ${#steps[@]}); do
 			j=$((i-1))
 			step=${steps[$j]}
-			if [ $step == $start_step ]; then
+			if [ $step == $start_script ]; then
 				steps=(${steps[@]:$j})
 				echo starting at step ${steps[0]}
 				break
@@ -227,7 +227,7 @@ while getopts ":bcs:l:" option; do
 	case $option in
 		b) do_build= ;;
 		c) setup_lfs; setup_chroot; exit 0;;
-		s) start_step=$OPTARG;;
+		s) start_script=$OPTARG;;
 		l) lfs_device=$OPTARG;;
 		*) 
 			echo "bad option: " $option
