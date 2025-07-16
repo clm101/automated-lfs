@@ -136,12 +136,7 @@ function do_phase1 {
 
 		(
 			. $step_script
-			package=${PACKAGE:-${step%-pass2}}
-			package_url=$(cat PACKAGES | grep "^$package" | awk '{print $2}')
-			package_archive=$(basename $package_url)
-			pushd $LFS/sources/$package
-			package_directory=$(get_decompressed_archive $package_archive)
-			pushd $package_directory
+			enter_package_source
 			build
 		)
 	done;

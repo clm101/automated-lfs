@@ -10,4 +10,21 @@ get_decompressed_archive() {
 	echo $decompressed_archive
 }
 
+enter_package_source() {
+	package=${PACKAGE:-${script%-pass2}}
+	if [ -z ${package:-} ]; then
+		echo "neither 'PACKAGE' or 'step' are defined"
+		exit 1
+	fi
+	pushd /sources/$package
+	package_url=$(cat /chroot-scripts/PACKAGES | grep "^$package" | awk '{print $2}')
+	package_archive=$(basename $package_url)
+	decompressed_archive=$(get_decompressed_archive $package_archive)
+	if [ -z ${decompressed_archive:-} ]; then
+		echo "can not get decompressed archive for $package"
+		exit 1
+	fi
+	pushd $decompressed_archive
+}
+
 # TODO: the build process can probably be put in here too

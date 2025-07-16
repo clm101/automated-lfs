@@ -12,18 +12,9 @@ set -x
 pushd /sources
 for step in ${STEPS[@]}; do
 	(
-		. /chroot-scripts/$step
-		if [ ! -z ${step##lfs-*} ]; then
-			package=${PACKAGE:-${step%-pass2}}
-			pushd /sources/$package
-			package_url=$(cat /chroot-scripts/PACKAGES | grep "^$package" | awk '{print $2}')
-			package_archive=$(basename $package_url)
-			decompressed_archive=$(get_decompressed_archive $package_archive)
-			if [ -z ${decompressed_archive:-} ]; then
-				echo "can not get decompressed archive for $package"
-				exit 1
-			fi
-			pushd $decompressed_archive
+		. /chroot-scripts/$script
+		if [ ! -z ${script##lfs-*} ]; then
+			enter_package_source
 			do_build
 		fi
 	)
