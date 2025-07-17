@@ -33,7 +33,9 @@ do_build() {
 	ninja
 	ninja install
 
-	cp /chroot-scripts/extras/systemd-user /etc/pam.d
+	pushd /chroot/scripts/extras/etc
+	cp -v --parents pam.d/systemd-user /etc
+	popd
 	systemd-machine-id-setup
 	systemctl preset-all
 }

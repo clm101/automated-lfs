@@ -23,7 +23,9 @@ install -dv -m 1777 /tmp /var/tmp
 ln -sv /proc/self/mounts /etc/mtab
 set -e
 
-cp -v /chroot-scripts/extras/{hosts,passwd,group} /etc
+pushd /chroot-scripts/extras/etc
+cp -v hosts passwd group /etc
+popd
 
 touch /var/log/{btmp,lastlog,faillog,wtmp}
 chgrp -v utmp /var/log/lastlog

@@ -60,7 +60,9 @@ do_build() {
 
 	make localedata/install-locales
 
-	cp /chroot-scripts/extras/nsswitch.conf /etc
+	pushd /chroot-scripts/extras/etc
+	cp nsswitch.conf /etc
+	popd
 
 	tar -xf ../../tzdata2025b.tar.gz
 	
@@ -78,7 +80,10 @@ do_build() {
 	zic -d $ZONEINFO -p America/New_York
 	unset ZONEINFO tz
 	
-	cp /chroot-scripts/extras/ld.so.conf /etc
+	pushd /chroot-scripts/extras/etc
+	cp ld.so.conf /etc
+	popd
+
 	set +e
 	mkdir -pv /etc/ld.so.conf.d
 	set -e

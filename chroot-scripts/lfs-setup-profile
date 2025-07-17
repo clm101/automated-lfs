@@ -1,3 +1,5 @@
 #!/bin/bash
 
-cp /chroot-scripts/extras/{locale.conf,profile,inputrc,shells} /etc
+pushd /chroot-scripts/extras/etc
+cp -v locale.conf profile inputrc shells /etc
+popd
