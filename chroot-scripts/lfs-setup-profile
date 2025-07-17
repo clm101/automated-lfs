@@ -1,5 +1,13 @@
 #!/bin/bash
 
 pushd /chroot-scripts/extras/etc
-cp -v locale.conf profile inputrc shells /etc
+cp -v locale.conf profile inputrc shells bashrc /etc
+
+install --directory --mode=0755 --owner=root --group=root /etc/profile.d
+install --directory --mode=0755 --owner=root --group=root /etc/bash_completion.d
+cp -v profile.d/* /etc
+cp -v --parents skel/* /etc
 popd
+
+dircolors -p > /etc/dircolors
+dircolors -p > /etc/skel/.dircolors
