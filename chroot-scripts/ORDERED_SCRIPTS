@@ -119,5 +119,6 @@ SCRIPTS=(gettext
 		util-linux-pass2 
 		e2fsprogs 
 		sudo
+		wget
 		linux-kernel
 		)

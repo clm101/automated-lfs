@@ -105,6 +105,7 @@ tcl https://sourceforge.net/projects/tcl/files/Tcl/8.6.16/tcl8.6.16-src.tar.gz h
 texinfo https://ftp.gnu.org/gnu/texinfo/texinfo-7.2.tar.xz
 util-linux https://www.kernel.org/pub/linux/utils/util-linux/v2.41/util-linux-2.41.1.tar.xz
 vim https://github.com/vim/vim/archive/v9.1.1500/vim-9.1.1500.tar.gz
+wget https://ftp.gnu.org/gnu/wget/wget-1.25.0.tar.gz
 wheel https://pypi.org/packages/source/w/wheel/wheel-0.46.1.tar.gz
 which https://ftp.gnu.org/gnu/which/which-2.23.tar.gz
 xml-parser https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.47.tar.gz
