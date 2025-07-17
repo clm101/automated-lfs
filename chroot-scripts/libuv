@@ -1,0 +1,8 @@
+#!/bin/bash
+
+do_build() {
+	ACLOCAL= sh autogen.sh
+	./configure --prefix=/usr --disable-static
+	make
+	make install
+}

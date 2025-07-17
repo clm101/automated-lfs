@@ -1,0 +1,24 @@
+#!/bin/bash
+
+do_build() {
+	make install
+	install -vdm755 /etc/ssl/local
+
+	/usr/sbin/make-ca -g
+
+	openssl x509 -in ../root.crt -text -fingerprint -setalias "CAcert Class 1 root" \
+        	-addtrust serverAuth -addtrust emailProtection -addtrust codeSigning \
+        	> /etc/ssl/local/CAcert_Class_1_root.pem &&
+	openssl x509 -in ../class3.crt -text -fingerprint -setalias "CAcert Class 3 root" \
+        	-addtrust serverAuth -addtrust emailProtection -addtrust codeSigning \
+        	> /etc/ssl/local/CAcert_Class_3_root.pem
+
+	/usr/sbin/make-ca -r
+
+	if [ ! -d /etc/profile.d ]; then
+		mkdir -pv /etc/profile.d
+	fi
+	cat > /etc/profile.d/pythoncerts.sh << "EOF"
+export _PIP_STANDALONE_CERT=/etc/pki/tls/certs/ca-bundle.crt
+EOF
+}

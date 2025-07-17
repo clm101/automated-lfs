@@ -1,0 +1,15 @@
+#!/bin/bash
+
+do_build() {
+	if [ ! -d build ]; then
+		mkdir -v build
+	fi
+	pushd build
+
+	meson setup .. \
+		    --prefix=/usr \
+		    --buildtype=release \
+		    -D graphite2=enabled
+	ninja
+	ninja install
+}

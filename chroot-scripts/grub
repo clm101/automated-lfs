@@ -1,6 +1,12 @@
 #!/bin/bash
 
 do_build() {
+	local font_directory=/usr/share/fonts/unifont
+	if [ ! -d $font_directory ]; then
+		mkdir -pv $font_directory
+	fi
+	gunzip -c ../unifont-16.0.01.pcf.gz > /usr/share/fonts/unifont/unifont.pcf
+
 	unset {C,CPP,CXX,LD}FLAGS
 
 	echo depends bli part_gpt > grub-core/extra_deps.lst
@@ -8,8 +14,13 @@ do_build() {
 	./configure --prefix=/usr     \
 				--sysconfdir=/etc \
 				--disable-efiemu  \
+				--target=x86_64 \
+				--with-platform=efi \
 				--disable-werror
 	make
 	make install
 	mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions
+
+	install -vm755 grub-mkfont /usr/bin/ &&
+	install -vm644 ascii.h widthspec.h *.pf2 /usr/share/grub/
 }

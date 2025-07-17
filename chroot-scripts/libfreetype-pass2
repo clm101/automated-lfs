@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PACKAGE=libfreetype
+
+do_build() {
+	./configure --prefix=/usr --enable-freetype-config --disable-static
+	make
+	make install
+}

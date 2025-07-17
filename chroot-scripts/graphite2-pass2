@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PACKAGE=graphite2
+do_build() {
+	pushd build
+	cmake -D CMAKE_INSTALL_PREFIX=/usr ..
+	make
+	make install
+}
