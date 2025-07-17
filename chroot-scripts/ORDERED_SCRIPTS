@@ -120,5 +120,9 @@ SCRIPTS=(gettext
 		e2fsprogs 
 		sudo
 		wget
+		libnl
+		iw
+		wireless-tools
+		wpa_supplicant
 		linux-kernel
 		)

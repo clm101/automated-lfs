@@ -1,0 +1,17 @@
+#!/bin/bash
+
+do_build() {
+	cp -v /chroot-scripts/extras/wpa_supplicant/.config ./wpa_supplicant
+	pushd wpa_supplicant
+	make BINDIR=/usr/sbin LIBDIR=/usr/lib
+	install -v -m755 wpa_{cli,passphrase,supplicant} /usr/sbin/
+	install -v -m644 doc/docbook/wpa_supplicant.conf.5 /usr/share/man/man5/
+	install -v -m644 doc/docbook/wpa_{cli,passphrase,supplicant}.8 /usr/share/man/man8/
+	install -v -m644 systemd/*.service /usr/lib/systemd/system/
+	install -v -m644 dbus/fi.w1.wpa_supplicant1.service \
+                 /usr/share/dbus-1/system-services/
+	install -v -d -m755 /etc/dbus-1/system.d
+	install -v -m644 dbus/dbus-wpa_supplicant.conf \
+                 /etc/dbus-1/system.d/wpa_supplicant.conf
+	popd
+}
