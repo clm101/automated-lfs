@@ -1,0 +1,17 @@
+#!/bin/bash
+
+do_build() {
+	./configure --prefix=/usr         \
+		--libexecdir=/usr/lib \
+		--with-secure-path    \
+		--with-env-editor     \
+		--docdir=/usr/share/doc/sudo-1.9.17p1 \
+		--with-passprompt="[sudo] password for %p: "
+	make
+	make install
+
+	pushd /chroot-scripts/extras/etc
+	cp -v --parents sudoers.d/00-sudo /etc
+	cp -v --parents pam.d/sudo /etc
+	popd
+}

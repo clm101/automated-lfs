@@ -98,6 +98,7 @@ readline https://ftp.gnu.org/gnu/readline/readline-8.3-rc2.tar.gz
 sed https://ftp.gnu.org/gnu/sed/sed-4.9.tar.xz
 setuptools https://pypi.org/packages/source/s/setuptools/setuptools-80.9.0.tar.gz
 shadow https://github.com/shadow-maint/shadow/releases/download/4.18.0/shadow-4.18.0.tar.xz
+sudo https://www.sudo.ws/dist/sudo-1.9.17p1.tar.gz
 systemd https://github.com/systemd/systemd/archive/v257.7/systemd-257.7.tar.gz
 tar https://ftp.gnu.org/gnu/tar/tar-1.35.tar.xz
 tcl https://sourceforge.net/projects/tcl/files/Tcl/8.6.16/tcl8.6.16-src.tar.gz https://sourceforge.net/projects/tcl/files/Tcl/8.6.16/tcl8.6.16-html.tar.gz

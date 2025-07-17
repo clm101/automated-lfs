@@ -118,5 +118,6 @@ SCRIPTS=(gettext
 		procps-ng 
 		util-linux-pass2 
 		e2fsprogs 
+		sudo
 		linux-kernel
 		)
