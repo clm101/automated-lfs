@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ -f perl ]; then
+	set +e
+	make clean
+	set -e
+fi
+
 DO_SECOND_PASS=
 if [ -v LFS_CHROOT ]; then
 	. /chroot-scripts/perl
