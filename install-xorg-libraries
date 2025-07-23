@@ -1,0 +1,39 @@
+#!/bin/bash
+
+for package in $(cat $HOME/automated-lfs/xorg-libraries); do
+	package_directory=$(tar -tf $package | head -n 1 | sed 's/\///')
+	echo building $package_directory
+
+	tar -xf $package
+	pushd $package_directory
+	docdir="--docdir=$XORG_PREFIX/share/doc/$package_directory"
+
+	case $package_directory in
+		libXfont2-[0-9]* )
+			./configure $XORG_CONFIG $docdir --disable-devel-docs
+			;;
+		libXt-[0-9]* )
+			./configure $XORG_CONFIG $docdir --with-appdefaultdir=/etc/X11/app-defaults
+			;;
+		libXpm-[0-9]* )
+			./configure $XORG_CONFIG $docdir --disable-open-zfile
+			;;
+		libpciaccess* )
+			mkdir build
+			pushd build
+			meson setup --prefix=$XORG_PREFIX --buildtype=release ..
+			ninja
+			sudo ninja install
+			popd
+			continue
+			;;
+		* )
+			./configure $XORG_CONFIG $docdir
+			;;
+	esac
+
+	make
+	sudo make install
+	popd
+	sudo /sbin/ldconfig
+done
