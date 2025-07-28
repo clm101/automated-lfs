@@ -1,0 +1,16 @@
+#!/bin/bash
+
+do_build() {
+	./configure --prefix=/usr \
+		    --with-gitconfig=/etc/gitconfig \
+		    --with-python=python3
+	make
+	make html
+	make man
+	make info
+
+	make perllibdir=/usr/lib/perl5/5.42/site_perl install
+	make install-man
+	make htmldir=/usr/share/doc/git-2.50.1 install-html
+	make install-info
+}

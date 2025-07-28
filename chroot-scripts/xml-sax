@@ -1,0 +1,7 @@
+#!/bin/bash
+
+do_build() {
+	yes | perl Makefile.PL
+	make
+	make install
+}

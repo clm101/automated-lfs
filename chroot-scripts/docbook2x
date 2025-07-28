@@ -1,0 +1,18 @@
+#!/bin/bash
+
+do_build() {
+	./configure --prefix=/usr --disable-static --with-html-xsl
+	make
+	cp -v -R VERSION charmaps dtd perl test utf8trans xslt /usr/share/xml/docbook/docbook2x
+	install -v -m755 -d /usr/share/xml/docbook/docbook2x
+	sudo xmlcatalog --noout --add "rewriteSystem" "http://docbook2x.sf.net/latest" "/usr/share/xml/docbook/docbook2x" /etc/xml/catalog
+	sudo xmlcatalog --noout --add "rewriteSystem" "https://docbook2x.sf.net/latest" "/usr/share/xml/docbook/docbook2x" /etc/xml/catalog
+	sudo xmlcatalog --noout --add "rewriteURI" "http://docbook2x.sf.net/latest" "/usr/share/xml/docbook/docbook2x" /etc/xml/catalog
+	sudo xmlcatalog --noout --add "rewriteURI" "https://docbook2x.sf.net/latest" "/usr/share/xml/docbook/docbook2x" /etc/xml/catalog
+	install -v -m644 -D README \
+		/usr/share/doc/docbook2x-0.8.8/README.txt &&
+
+	install -v -m644    NEWS* \
+		/usr/share/doc/docbook2x-0.8.8
+	cp -v -R doc/* /usr/share/doc/docbook2x-0.8.8
+}

@@ -1,4 +1,5 @@
 acl https://download.savannah.gnu.org/releases/acl/acl-2.3.2.tar.xz
+asciidoc https://files.pythonhosted.org/packages/source/a/asciidoc/asciidoc-10.2.1.tar.gz
 attr https://mirrors.ocf.berkeley.edu/nongnu/attr/attr-2.5.2.tar.xz
 autoconf https://ftp.gnu.org/gnu/autoconf/autoconf-2.72.tar.xz
 automake https://ftp.gnu.org/gnu/automake/automake-1.18.1.tar.xz
@@ -15,6 +16,7 @@ dejagnu https://ftp.gnu.org/gnu/dejagnu/dejagnu-1.6.3.tar.gz
 diffutils https://ftp.gnu.org/gnu/diffutils/diffutils-3.12.tar.xz
 docbook-xml https://docbook.org/xml/4.5/docbook-xml-4.5.zip
 docbook-xsl-nons https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/docbook-xsl-nons-1.79.2.tar.bz2 https://www.linuxfromscratch.org/patches/blfs/svn/docbook-xsl-nons-1.79.2-stack_fix-1.patch https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/docbook-xsl-doc-1.79.2.tar.bz2
+docbook2x https://downloads.sourceforge.net/project/docbook2x/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
 e2fsprogs https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.47.2/e2fsprogs-1.47.2.tar.gz
 efibootmgr https://github.com/rhboot/efibootmgr/releases/download/18/efibootmgr-18.tar.bz2
 efivar https://github.com/rhboot/efivar/archive/refs/tags/39.tar.gz
@@ -29,6 +31,7 @@ gawk https://ftp.gnu.org/gnu/gawk/gawk-5.3.2.tar.xz
 gcc https://ftp.gnu.org/gnu/gcc/gcc-15.1.0/gcc-15.1.0.tar.xz
 gdbm https://ftp.gnu.org/gnu/gdbm/gdbm-1.25.tar.gz
 gettext https://ftp.gnu.org/gnu/gettext/gettext-0.25.tar.xz
+git https://www.kernel.org/pub/software/scm/git/git-2.50.1.tar.xz
 glibc https://ftp.gnu.org/gnu/glibc/glibc-2.41.tar.xz https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.41-fhs-1.patch https://www.iana.org/time-zones/repository/releases/tzdata2025b.tar.gz
 gmp https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz
 gperf https://ftp.gnu.org/gnu/gperf/gperf-3.3.tar.gz
@@ -112,7 +115,11 @@ wheel https://pypi.org/packages/source/w/wheel/wheel-0.46.1.tar.gz
 which https://ftp.gnu.org/gnu/which/which-2.23.tar.gz
 wireless-tools https://hewlettpackard.github.io/wireless-tools/wireless_tools.29.tar.gz https://www.linuxfromscratch.org/patches/blfs/svn/wireless_tools-29-fix_iwlist_scanning-1.patch
 wpa_supplicant https://w1.fi/releases/wpa_supplicant-2.11.tar.gz
+xml-namespacesupport https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-NamespaceSupport-1.12.tar.gz
 xml-parser https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.47.tar.gz
+xml-sax-base https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-SAX-Base-1.09.tar.gz
+xml-sax https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-SAX-1.02.tar.gz
+xmlto https://pagure.io/xmlto/archive/0.0.29/xmlto-0.0.29.tar.gz
 xz https://github.com/tukaani-project/xz/releases/download/v5.8.1/xz-5.8.1.tar.xz
 zlib https://zlib.net/fossils/zlib-1.3.1.tar.gz
 zstd https://github.com/facebook/zstd/releases/download/v1.5.7/zstd-1.5.7.tar.gz
