@@ -131,5 +131,14 @@ SCRIPTS=(gettext
 		iw
 		wireless-tools
 		wpa_supplicant
+		trove-classifiers
+		setuptools-scm
+		pluggy
+		pathspec
+		editables
+		hatchling
+		hatch-vcs
+		iniconfig
+		pytest
 		linux-kernel
 		)

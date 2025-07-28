@@ -18,6 +18,7 @@ docbook-xml https://docbook.org/xml/4.5/docbook-xml-4.5.zip
 docbook-xsl-nons https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/docbook-xsl-nons-1.79.2.tar.bz2 https://www.linuxfromscratch.org/patches/blfs/svn/docbook-xsl-nons-1.79.2-stack_fix-1.patch https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/docbook-xsl-doc-1.79.2.tar.bz2
 docbook2x https://downloads.sourceforge.net/project/docbook2x/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
 e2fsprogs https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.47.2/e2fsprogs-1.47.2.tar.gz
+editables https://files.pythonhosted.org/packages/source/e/editables/editables-0.5.tar.gz
 efibootmgr https://github.com/rhboot/efibootmgr/releases/download/18/efibootmgr-18.tar.bz2
 efivar https://github.com/rhboot/efivar/archive/refs/tags/39.tar.gz
 elfutils https://sourceware.org/ftp/elfutils/0.193/elfutils-0.193.tar.bz2
@@ -41,9 +42,12 @@ groff https://ftp.gnu.org/gnu/groff/groff-1.23.0.tar.gz
 grub https://ftp.gnu.org/gnu/grub/grub-2.12.tar.xz https://unifoundry.com/pub/unifont/unifont-16.0.01/font-builds/unifont-16.0.01.pcf.gz
 gzip https://ftp.gnu.org/gnu/gzip/gzip-1.14.tar.xz
 harfbuzz https://github.com/harfbuzz/harfbuzz/releases/download/11.2.1/harfbuzz-11.2.1.tar.xz
+hatch-vcs https://files.pythonhosted.org/packages/source/h/hatch-vcs/hatch_vcs-0.4.0.tar.gz
+hatchling https://files.pythonhosted.org/packages/source/h/hatchling/hatchling-1.27.0.tar.gz
 iana-etc https://github.com/Mic92/iana-etc/releases/download/20250618/iana-etc-20250618.tar.gz
 icu https://github.com/unicode-org/icu/releases/download/release-77-1/icu4c-77_1-src.tgz
 inetutils https://ftp.gnu.org/gnu/inetutils/inetutils-2.6.tar.xz
+iniconfig https://files.pythonhosted.org/packages/source/i/iniconfig/iniconfig-2.0.0.tar.gz
 intltool https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
 iproute2 https://www.kernel.org/pub/linux/utils/net/iproute2/iproute2-6.15.0.tar.xz
 iw https://www.kernel.org/pub/software/network/iw/iw-6.9.tar.xz
@@ -92,15 +96,19 @@ openssl https://github.com/openssl/openssl/releases/download/openssl-3.5.1/opens
 p11-kit https://github.com/p11-glue/p11-kit/releases/download/0.25.5/p11-kit-0.25.5.tar.xz
 packaging https://files.pythonhosted.org/packages/source/p/packaging/packaging-25.0.tar.gz
 patch https://ftp.gnu.org/gnu/patch/patch-2.8.tar.xz
+pathspec https://files.pythonhosted.org/packages/source/p/pathspec/pathspec-0.12.1.tar.gz
 pcre2 https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.45/pcre2-10.45.tar.gz
 perl https://www.cpan.org/src/5.0/perl-5.42.0.tar.xz
 pkgconf https://distfiles.ariadne.space/pkgconf/pkgconf-2.5.1.tar.xz
+pluggy https://files.pythonhosted.org/packages/source/p/pluggy/pluggy-1.5.0.tar.gz
 popt https://ftp.osuosl.org/pub/rpm/popt/releases/popt-1.x/popt-1.19.tar.gz
 procps-ng https://sourceforge.net/projects/procps-ng/files/Production/procps-ng-4.0.5.tar.xz
 psmisc https://sourceforge.net/projects/psmisc/files/psmisc/psmisc-23.7.tar.xz
+pytest https://files.pythonhosted.org/packages/source/p/pytest/pytest-8.4.1.tar.gz
 python https://www.python.org/ftp/python/3.13.5/Python-3.13.5.tar.xz
 readline https://ftp.gnu.org/gnu/readline/readline-8.3-rc2.tar.gz
 sed https://ftp.gnu.org/gnu/sed/sed-4.9.tar.xz
+setuptools-scm https://files.pythonhosted.org/packages/source/s/setuptools_scm/setuptools_scm-8.3.0.tar.gz
 setuptools https://pypi.org/packages/source/s/setuptools/setuptools-80.9.0.tar.gz
 shadow https://github.com/shadow-maint/shadow/releases/download/4.18.0/shadow-4.18.0.tar.xz
 sudo https://www.sudo.ws/dist/sudo-1.9.17p1.tar.gz
@@ -108,6 +116,7 @@ systemd https://github.com/systemd/systemd/archive/v257.7/systemd-257.7.tar.gz
 tar https://ftp.gnu.org/gnu/tar/tar-1.35.tar.xz
 tcl https://sourceforge.net/projects/tcl/files/Tcl/8.6.16/tcl8.6.16-src.tar.gz https://sourceforge.net/projects/tcl/files/Tcl/8.6.16/tcl8.6.16-html.tar.gz
 texinfo https://ftp.gnu.org/gnu/texinfo/texinfo-7.2.tar.xz
+trove-classifiers https://files.pythonhosted.org/packages/source/t/trove_classifiers/trove_classifiers-2025.4.11.15.tar.gz
 util-linux https://www.kernel.org/pub/linux/utils/util-linux/v2.41/util-linux-2.41.1.tar.xz
 vim https://github.com/vim/vim/archive/v9.1.1500/vim-9.1.1500.tar.gz
 wget https://ftp.gnu.org/gnu/wget/wget-1.25.0.tar.gz
