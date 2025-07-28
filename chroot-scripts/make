@@ -1,6 +1,11 @@
 #!/bin/bash
 
 do_build() {
+	if [ -e Makefile ]; then
+		set +e
+		make distclean
+		set -e
+	fi
 	./configure --prefix=/usr
 	make
 	make install

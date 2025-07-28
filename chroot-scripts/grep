@@ -3,6 +3,12 @@
 do_build() {
 	sed -i "s/echo/#echo/" src/egrep.sh
 
+	if [ -e Makefile ]; then
+		set +e
+		make distclean
+		set -e
+	fi
+
 	./configure --prefix=/usr
 	make
 	make install

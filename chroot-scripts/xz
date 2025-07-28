@@ -1,6 +1,12 @@
 #!/bin/bash
 
 do_build() {
+	if [ -e Makefile ]; then
+		set +e
+		make distclean
+		set -e
+	fi
+
 	./configure --prefix=/usr    \
 				--disable-static \
 				--docdir=/usr/share/doc/xz-5.8.1

@@ -1,6 +1,12 @@
 #!/bin/bash
 
 do_build() {
+	if [ -e Makefile ]; then
+		set +e
+		make distclean
+		set -e
+	fi
+
 	FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr
 	make
 	make install

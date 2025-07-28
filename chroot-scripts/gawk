@@ -3,6 +3,12 @@
 do_build() {
 	sed -i 's/extras//' Makefile.in
 
+	if [ -e Makefile ]; then
+		set +e
+		make distclean
+		set -e
+	fi
+
 	./configure --prefix=/usr
 	make
 	rm -f /usr/bin/gawk-5.3.2
