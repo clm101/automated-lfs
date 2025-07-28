@@ -3,6 +3,10 @@
 do_build() {
 	set +e
 	mkdir -pv /var/lib/hwclock
+
+	if [ -e Makefile ]; then
+		make distclean
+	fi
 	set -e
 	
 	configure_args="--libdir=/usr/lib     \

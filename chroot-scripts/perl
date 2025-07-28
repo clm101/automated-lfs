@@ -22,6 +22,12 @@ do_build() {
 		done
 	fi
 
+	if [ -e Makefile ]; then
+		set +e
+		make distclean
+		set -e
+	fi
+
 	sh Configure "${configure_args[@]}"
 	make
 	make install

@@ -1,6 +1,12 @@
 #!/bin/bash
 
 do_build() {
+	if [ -e Makefile ]; then
+		set +e
+		make distclean
+		set -e
+	fi
+
 	tar -xf ../freetype-doc-2.13.3.tar.xz --strip-components=2 -C docs
 	sed -ri "s:.*(AUX_MODULES.*valid):\1:" modules.cfg
 

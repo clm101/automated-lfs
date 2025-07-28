@@ -10,6 +10,12 @@ do_build() {
 		configure_args+=" --without-ensurepip"
 	fi
 
+	if [ -e Makefile ]; then
+		set +e
+		make distclean
+		set -e
+	fi
+
 	./configure $configure_args
 	make
 	make install

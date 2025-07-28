@@ -1,6 +1,12 @@
 #!/bin/bash
 
 do_build() {
+	if [ -e Makefile ]; then
+		set +e
+		make distclean
+		set -e
+	fi
+
 	if [ -v DO_SECOND_PASS ]; then
 		./configure --prefix=/usr    \
 				--disable-static \
