@@ -12,7 +12,13 @@ do_build() {
 	fi
 	pushd build
 
-	cmake -D CMAKE_INSTALL_PREFIX=/usr ..
+	if [ -e Makefile ]; then
+		set +e
+		make distclean
+		set -e
+	fi
+
+	cmake -D CMAKE_INSTALL_PREFIX=/usr .. --fresh
 	make
 	make install
 }
