@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+wget -i "$HOME/automated-lfs/nvidia-egl-libraries" -c -B https://github.com/NVIDIA/
+
+for package in $(cat "$HOME/automated-lfs/nvidia-egl-libraries"); do
+	package=$(basename $package)
+	package_directory=$(tar -tf $package | head -n 1 | sed 's/\///')
+	echo building $package_directory
+	                                                                 
+	tar -xf $package
+	pushd $package_directory
+
+	mkdir build && pushd build
+	meson setup --prefix=/usr --buildtype=release ..
+	ninja
+	sudo ninja install
+	popd
+	popd
+	sudo /sbin/ldconfig
+done
