@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+wget -i "$HOME/automated-lfs/xcb-utilities" -c -B https://xcb.freedesktop.org/dist/
+for package in $(cat "$HOME/automated-lfs/xcb-utilities"); do
+
+	package_directory=$(tar -tf $package | head -n 1 | sed 's/\///')
+        echo building $package_directory
+
+        tar -xf $package
+        pushd $package_directory
+	
+	./configure $XORG_CONFIG
+	make
+	sudo make install
+	popd
+done
+
