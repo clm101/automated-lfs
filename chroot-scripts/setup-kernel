@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PACKAGE=linux-kernel
+
+do_build() {
+	echo "Preparing the kernel config for the first time..."
+	if [ ! -e lfs-config ]; then
+		make KCONFIG_CONFIG=lfs-config x86_64_defconfing
+	else
+		make KCONFIG_CONFIG=lfs-config oldconfig
+	fi
+}

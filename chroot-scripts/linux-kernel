@@ -61,9 +61,14 @@ do_build() {
 	make mrproper
 	set -e
 
+	if [ ! -e lfs-config ]; then
+		make x86_64_defconfig
+	else
+		cp -v lfs-config .config
+	fi
+
 	get_firmwares	
 	
-	make x86_64_defconfig
 	local program="/CONFIG_EXTRA_FIRMWARE=/ c CONFIG_EXTRA_FIRMWARE=\"${firmwares[@]}\""
 	sed "$program" -i .config
 	make oldconfig

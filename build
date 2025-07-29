@@ -155,6 +155,14 @@ lfs_mount() {
 	$@
 }
 
+copy_kernel_config() {
+	local archive=$(basename $(cat PACKAGES | grep "^linux-kernel" | awk '{ print $2; }'))
+	pushd $LFS/sources/linux-kernel > /dev/null
+	local kernel_directory=$(get_decompressed_archive $archive)
+	popd > /dev/null
+	cp -v $1 $LFS/sources/linux-kernel/$kernel_directory/lfs-config
+}
+
 function setup_chroot {
 	echo "setting up chroot environment..."
 	sudo chown --from $BUILD_USER -R root:root $LFS/{usr,var,etc,tools,lib64}
@@ -179,6 +187,30 @@ function setup_chroot {
 
 	sudo cp -Rv ./chroot-scripts $LFS
 	sudo cp -Rv automation-globals PACKAGES $LFS/chroot-scripts
+
+	local prompt
+	local default
+	local host_config=$(find /boot -name "config*" | head -n 1)
+	local generating_config
+	if [ -z "$host_config" ]; then
+		prompt="[G]enerate default kernel config or provide path? (G/<path to kernel config>)"
+		default=g
+	else
+		prompt="[G]enerate default kernel config, [u]se ${host_config}, or provide path? (U/g/<path to kernel config>): "
+		default=u
+	fi
+	read -p "$prompt" choice
+	case ${choice:=$default} in
+		u|U) copy_kernel_config $host_config;;
+		g|G) generating_config=1;;
+		*) \
+			if [ ! -e $choice ]; then
+				echo "Unrecognized choice or path not found: $choice"
+				exit 1
+			else
+				copy_kernel_config $choice
+			fi;;
+	esac
 
 	sudo chroot "$LFS" /usr/bin/env -i \
 				HOME=/root		\
