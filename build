@@ -221,7 +221,7 @@ function setup_chroot {
 	case ${choice:=$default} in
 		u|U) \
 			if [ -v u_enabled ]; then
-				copy_kernel_config $host_config;;
+				copy_kernel_config $host_config
 			else
 				exit_kernel_config $choice
 			fi;;
