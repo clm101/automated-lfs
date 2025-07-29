@@ -204,7 +204,7 @@ function setup_chroot {
 	fi
 
 	local kernel_base=$(basename $(cat PACKAGES | grep "^linux-kernel" | awk '{ print $2; }'))
-	if [ -e $LFS/sources/linux-kernel/$kernel_base/lfs-config]; then
+	if [ -e $LFS/sources/linux-kernel/$kernel_base/lfs-config ]; then
 		kernel_config_options+=( "Use [e]xisting lfs-config" )
 		local e_enabled=1
 		default=e
