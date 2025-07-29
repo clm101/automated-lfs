@@ -163,6 +163,11 @@ copy_kernel_config() {
 	cp -v $1 $LFS/sources/linux-kernel/$kernel_directory/lfs-config
 }
 
+exit_kernel_config() {
+	echo "Unrecognized choice or path not found: $1"
+	exit 1
+}
+
 function setup_chroot {
 	echo "setting up chroot environment..."
 	sudo chown --from $BUILD_USER -R root:root $LFS/{usr,var,etc,tools,lib64}
@@ -188,24 +193,46 @@ function setup_chroot {
 	sudo cp -Rv ./chroot-scripts $LFS
 	sudo cp -Rv automation-globals PACKAGES $LFS/chroot-scripts
 
-	local prompt
-	local default
+	local kernel_config_options=()
+	kernel_config_options+=( "[G]enerate default kernel config" )
+	local default=g
 	local host_config=$(find /boot -name "config*" | head -n 1)
-	if [ -z "$host_config" ]; then
-		prompt="[G]enerate default kernel config or provide path? (G/<path to kernel config>)"
-		default=g
-	else
-		prompt="[G]enerate default kernel config, [u]se ${host_config}, or provide path? (U/g/<path to kernel config>): "
+	if [ ! -z "$host_config" ]; then
+		kernel_config_options+=( "[U]se $host_config" )
+		local u_enabled=1
 		default=u
 	fi
-	read -p "$prompt" choice
+
+	local kernel_base=$(basename $(cat PACKAGES | grep "^linux-kernel" | awk '{ print $2; }'))
+	if [ -e $LFS/sources/linux-kernel/$kernel_base/lfs-config]; then
+		kernel_config_options+=( "Use [e]xisting lfs-config" )
+		local e_enabled=1
+		default=e
+	fi
+
+	kernel_config_options+=( "Provide path to base kernel config" )
+
+	for kernel_config_option in ${kernel_config_options[@]}; do
+		echo "$kernel_config_option"
+	done
+	read -p "Default (${default@U}): " choice
 	case ${choice:=$default} in
-		u|U) copy_kernel_config $host_config;;
+		u|U) \
+			if [ -v u_enabled ]; then
+				copy_kernel_config $host_config;;
+			else
+				exit_kernel_config $choice
+			fi;;
+		e|E) \
+			if [ -v e_enabled ]; then
+				echo "Using existing kernel config in chroot environment"
+			else
+				exit_kernel_config $choice
+			fi;;
 		g|G) echo "Will generate an x86_64_defconfig config in the chroot environment";;
 		*) \
 			if [ ! -e $choice ]; then
-				echo "Unrecognized choice or path not found: $choice"
-				exit 1
+				exit_kernel_config $choice
 			else
 				copy_kernel_config $choice
 			fi;;
