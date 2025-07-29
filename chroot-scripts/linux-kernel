@@ -9,6 +9,8 @@ join_by() {
 get_firmwares() {
 	PACKAGE=linux-firmware enter_package_source
 	firmwares=()
+	local links
+	declare -A links # only meant for npu.sbin
 	for match in $(dmesg | grep -Eo "(Loading firmware from|using built-in) .+$" | awk '{ if($2 ~ "built-in") print $3; else print $4; }'); do
 		host_path=${match%.zst}
 		host_path=${host_path#/lib/firmware/}
@@ -33,13 +35,23 @@ get_firmwares() {
 		done
 	
 		if [ -e $(join_by '/' ${repo_path[@]}) ]; then
+			if [ "${repo_path[*]}" != "${components[*]}" ]; then
+				links[${repo_path[-1]}]=${match%.zst}
+			fi
 			firmwares[${#firmwares[@]}]=$(join_by '/' ${repo_path[@]})
 		else
 			echo "did not find $match in repo"
 		fi
 	done
 
-	cp -Rv --parents ${firmwares[@]} /lib/firmware
+	if [ ${#firmwares[@]} -eq 0 ]; then
+		echo "unable to determine firmwares used"
+	else
+		cp -Rv --parents ${firmwares[@]} /lib/firmware
+		for link_target in ${!links[*]}; do
+			ln -sfv $link_target ${links[$link_target]}
+		done
+	fi
 	popd
 	popd
 }
