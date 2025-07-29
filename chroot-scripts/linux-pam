@@ -2,6 +2,7 @@
 
 do_build() {
 #TODO: get docs
+	modify_kernel_config "CONFIG_AUDIT=y"
 	mkdir build
 	cd build
 	meson setup .. \

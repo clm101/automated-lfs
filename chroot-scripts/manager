@@ -21,6 +21,26 @@ if [ ! -z ${LFS_CHROOT_START_SCRIPT:-} ]; then
 	done
 fi
 
+KERNEL_LOCATION=/sources/linux-kernel/$(basename $(cat /chroot-scripts/PACKAGES | grep "^linux-kernel" | awk '{ print $2; }'))
+modify_kernel_config() {
+	pushd $KERNEL_LOCATION > /dev/null
+	if [ ! -e lfs-config ]; then
+		echo "LFS has not created the kernel config yet, update build order so the kernel config pre-req is met"
+		exit 1
+	else
+		local program
+		local modification
+		for modification in $@; do
+			config_argument=$(echo $modification | cut -d'=' -f 1)
+			program="/${config_argument}=/ c $modification"
+			sed -i "$program" lfs-config
+		done
+
+		make KCONFIG_CONFIG=lfs-config oldconfig
+	fi
+	popd
+}
+
 echo "script order is ${scripts[@]}"
 pushd /sources
 for script in ${scripts[@]}; do

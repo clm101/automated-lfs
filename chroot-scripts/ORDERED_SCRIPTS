@@ -61,10 +61,11 @@ SCRIPTS=(gettext
 		setuptools 
 		ninja 
 		meson 
-		linux-pam 
-		shadow 
 		kmod 
 		coreutils 
+		setup-kernel
+		linux-pam 
+		shadow 
 		diffutils 
 		gawk 
 		findutils 
