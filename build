@@ -191,7 +191,6 @@ function setup_chroot {
 	local prompt
 	local default
 	local host_config=$(find /boot -name "config*" | head -n 1)
-	local generating_config
 	if [ -z "$host_config" ]; then
 		prompt="[G]enerate default kernel config or provide path? (G/<path to kernel config>)"
 		default=g
@@ -202,7 +201,7 @@ function setup_chroot {
 	read -p "$prompt" choice
 	case ${choice:=$default} in
 		u|U) copy_kernel_config $host_config;;
-		g|G) generating_config=1;;
+		g|G) echo "Will generate an x86_64_defconfig config in the chroot environment";;
 		*) \
 			if [ ! -e $choice ]; then
 				echo "Unrecognized choice or path not found: $choice"
