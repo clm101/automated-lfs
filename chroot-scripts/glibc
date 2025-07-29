@@ -15,7 +15,8 @@ do_build() {
              --disable-nscd                  \
              libc_cv_slibdir=/usr/lib        \
              --enable-stack-protector=strong \
-             --enable-kernel=6.15
+             --enable-kernel=6.16	     \
+	     --enable-sframe
 
 	make
 	touch /etc/ld.so.conf

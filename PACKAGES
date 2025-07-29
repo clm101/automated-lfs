@@ -32,7 +32,7 @@ gcc https://ftp.gnu.org/gnu/gcc/gcc-15.1.0/gcc-15.1.0.tar.xz
 gdbm https://ftp.gnu.org/gnu/gdbm/gdbm-1.25.tar.gz
 gettext https://ftp.gnu.org/gnu/gettext/gettext-0.25.tar.xz
 git https://www.kernel.org/pub/software/scm/git/git-2.50.1.tar.xz
-glibc https://ftp.gnu.org/gnu/glibc/glibc-2.41.tar.xz https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.41-fhs-1.patch https://www.iana.org/time-zones/repository/releases/tzdata2025b.tar.gz
+glibc https://ftp.gnu.org/gnu/glibc/glibc-2.42.tar.xz https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.41-fhs-1.patch https://www.iana.org/time-zones/repository/releases/tzdata2025b.tar.gz
 gmp https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz
 gperf https://ftp.gnu.org/gnu/gperf/gperf-3.3.tar.gz
 graphite2 https://github.com/silnrsi/graphite/releases/download/1.3.14/graphite2-1.3.14.tgz
