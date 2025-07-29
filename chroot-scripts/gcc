@@ -15,7 +15,7 @@ do_build() {
 
 	../configure --prefix=/usr            \
 	             LD=ld                    \
-	             --enable-languages=c,c++ \
+	             --enable-languages=c,c++,go \
 	             --enable-default-pie     \
 	             --enable-default-ssp     \
 	             --enable-host-pie        \
