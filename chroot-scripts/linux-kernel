@@ -9,7 +9,7 @@ join_by() {
 get_firmwares() {
 	PACKAGE=linux-firmware enter_package_source
 	firmwares=()
-	for match in $(dmesg | grep -Eo 'Loading firmware from .+$' | cut -d ' ' -f 4); do
+	for match in $(dmesg | grep -Eo "(Loading firmware from|using built-in) .+$" | awk '{ if($2 ~ "built-in") print $3; else print $4; }'); do
 		host_path=${match%.zst}
 		host_path=${host_path#/lib/firmware/}
 	
