@@ -212,6 +212,7 @@ function setup_chroot {
 
 	kernel_config_options+=( "Provide path to base kernel config" )
 
+	set +x
 	for kernel_config_option in "${kernel_config_options[@]}"; do
 		echo "$kernel_config_option"
 	done
@@ -237,6 +238,7 @@ function setup_chroot {
 				copy_kernel_config $choice
 			fi;;
 	esac
+	set -x
 
 	sudo chroot "$LFS" /usr/bin/env -i \
 				HOME=/root		\
