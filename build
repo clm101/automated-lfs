@@ -213,6 +213,7 @@ function setup_chroot {
 	kernel_config_options+=( "Provide path to base kernel config" )
 
 	set +x
+	echo "Selecting kernel for chroot environment..."
 	for kernel_config_option in "${kernel_config_options[@]}"; do
 		echo "$kernel_config_option"
 	done
