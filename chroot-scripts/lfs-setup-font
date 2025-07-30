@@ -1,5 +1,26 @@
 #!/bin/bash
 
-pushd /chroot-scripts/extras/etc
-cp vconsole.conf /etc
-popd
+echo "FONT=firamono" > /etc/vonsole.conf
+
+pushd /sources/firamono
+font_archive=$(cat /chroot-scripts/PACKAGES | cut -d' ' -f 2)
+font_directory=$(get_decompressed_archive $font_archive)
+pushd $font_directory
+# https://slackware.uk/~urchlay/repos/ttf-console-fonts/ttf2psfu.sh
+
+otf2bdf FiraMonoNerdFont-Regular.otf -o /tmp/firamono-tmp.bdf
+
+# look into why this is needed
+AV=$( sed -n 's,AVERAGE_WIDTH ,,p' tmp.bdf )
+AV=$(( ( AV + 30 ) / 10 * 10 ))
+sed -i "/AVERAGE_WIDTH/s, .*, $AV," /tmp/firamono-tmp.bdf
+
+BDF2PSF_SHARE=/usr/share/bdf2psf # Fonts directory from Debian's console-setup
+SETS="\
+	$BDF2PSF_SHARE/ascii.set+\
+	$BDF2PSF_SHARE/linux.set+\
+	$BDF2PSF_SHARE/fontsets/Lat2.256+\
+	$BDF2PSF_SHARE/fontsets/Uni1.512+\
+	$BDF2PSF_SHARE/useful.set\
+	"
+bdf2psf --fb /tmp/firamono-tmp.bdf $BDF2PSF_SHARE/standard.equivalents $SETS 512 /usr/share/consolefonts/firamono.psfu

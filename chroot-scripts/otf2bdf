@@ -1,0 +1,14 @@
+#!/bin/bash
+
+do_build() {
+	if [ ! -e configure && -d otf2bdf-master ]; then
+		pushd otf2bdf-master
+	elif [ ! -e configure ]; then
+		echo "Unable to get bearings in otf2bdf"
+		exit 1
+	fi
+
+	./configure --prefix=/usr
+	make
+	make install
+}

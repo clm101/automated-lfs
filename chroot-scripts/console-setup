@@ -1,0 +1,12 @@
+#!/bin/bash
+
+do_build() {
+	local bdf2psf_share=/usr/share/bdf2psf
+	if [ ! -d $bdf2psf ]; then
+		mkdir -v $bdf2psf
+	fi
+
+	cp -v Fonts/{ascii,linux,useful}.set $bdf2psf
+	cp -vR Fonts/fontsets $bdf2psf
+	cp -v Fonts/bdf2psf /usr/bin
+}

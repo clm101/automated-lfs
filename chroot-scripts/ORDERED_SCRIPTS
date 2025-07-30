@@ -141,5 +141,7 @@ SCRIPTS=(gettext
 		hatch-vcs
 		iniconfig
 		pytest
+		console-setup
+		otf2bdf
 		linux-kernel
 		)
