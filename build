@@ -264,7 +264,7 @@ function setup_chroot {
 	#do_phase1
 #fi
 
-while getopts ":bcs:l:" option; do
+while getopts ":bcs:l:e:" option; do
 	case $option in
 		b) do_build= ;;
 		c) setup_lfs; setup_chroot; exit 0;;
