@@ -1,0 +1,12 @@
+#!/bin/bash
+
+do_build() {
+	modify_kernel_config "CONFIG_MSDOS_FS=y" "CONFIG_VFAT_FS=y"
+
+	./configure --prefix=/usr	\
+		    --enable-compat-symlinks	\
+		    --mandir=/usr/share/man	\
+		    --docdir=/usr/share/doc/dosfstools-4.2
+	make
+	make install
+}

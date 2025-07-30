@@ -143,5 +143,6 @@ SCRIPTS=(gettext
 		pytest
 		console-setup
 		otf2bdf
+		dosfstools
 		linux-kernel
 		)

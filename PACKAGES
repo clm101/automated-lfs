@@ -18,6 +18,7 @@ diffutils https://ftp.gnu.org/gnu/diffutils/diffutils-3.12.tar.xz
 docbook-xml https://docbook.org/xml/4.5/docbook-xml-4.5.zip
 docbook-xsl-nons https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/docbook-xsl-nons-1.79.2.tar.bz2 https://www.linuxfromscratch.org/patches/blfs/svn/docbook-xsl-nons-1.79.2-stack_fix-1.patch https://github.com/docbook/xslt10-stylesheets/releases/download/release/1.79.2/docbook-xsl-doc-1.79.2.tar.bz2
 docbook2x https://downloads.sourceforge.net/project/docbook2x/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
+dosfstools https://github.com/dosfstools/dosfstools/releases/download/v4.2/dosfstools-4.2.tar.gz
 e2fsprogs https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.47.2/e2fsprogs-1.47.2.tar.gz
 editables https://files.pythonhosted.org/packages/source/e/editables/editables-0.5.tar.gz
 efibootmgr https://github.com/rhboot/efibootmgr/releases/download/18/efibootmgr-18.tar.bz2
