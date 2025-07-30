@@ -24,3 +24,9 @@ SETS="\
 	$BDF2PSF_SHARE/useful.set\
 	"
 bdf2psf --fb /tmp/firamono-tmp.bdf $BDF2PSF_SHARE/standard.equivalents $SETS 512 /usr/share/consolefonts/firamono.psfu
+
+grub_font_directory=/boot/grub/fonts
+if [ ! -d $grub_font_directory ]; then
+	mkdir -pv $grub_font_directory
+fi
+grub-mkfont -s 24 -o $grub_font_directory/firamono.pf2 FiraMonoNerdFont-Regular.otf
