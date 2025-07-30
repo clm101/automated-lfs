@@ -11,7 +11,7 @@ for mountpoint in / /boot/efi; do
 	mount_info=$(mount -l | grep "on $mountpoint type")
 	mount_device=$(echo $mount_info | cut -d' ' -f 1)
 	filesystem_type=$(echo $mount_info | cut -d' ' -f 5)
-	device_uuid=$(lsblk --output UUID,MOUNTPOINT | grep "$mountpoint" | cut -d' ' -f 1)
+	device_uuid=$(lsblk --output UUID,PATH | grep "$mount_device" | cut -d' ' -f 1)
 	fstab_info="UUID=$device_uuid	$mountpoint	$filesystem_type	"
 	if [ "$filesystem_type" == "ext4" ]; then
 		fstab_info+="defaults	1	1"
