@@ -113,29 +113,28 @@ function do_phase1 {
 	done
 	PACKAGES_PATH=$(realpath PACKAGES)
 
-	steps=(binutils gcc linux-headers glibc libstdc++ \
+	scripts=(binutils gcc linux-headers glibc libstdc++ \
 		   m4 ncurses bash coreutils diffutils file \
 		   findutils gawk grep gzip make patch sed tar xz \
 		   binutils-pass2 gcc-pass2)
 	if [ -v start_script ]; then
-		for i in $(seq ${#steps[@]}); do
+		for i in $(seq ${#scripts[@]}); do
 			j=$((i-1))
-			step=${steps[$j]}
-			if [ $step == $start_script ]; then
-				steps=(${steps[@]:$j})
-				echo starting at step ${steps[0]}
+			script=${scripts[$j]}
+			if [ $script == $start_script ]; then
+				scripts=(${scripts[@]:$j})
+				echo starting at step ${scripts[0]}
 				break
 			fi
 		done
 	fi
 
 	shopt -s extglob
-	for step in ${steps[@]}; do
-		echo doing step $step
-		step_script=`realpath "phase1/$step"`
-
+	local script
+	for script in ${scripts[@]}; do
+		echo doing step $script
 		(
-			. $step_script
+			. $(realpath "phase1/$script")
 			enter_package_source
 			build
 		)
