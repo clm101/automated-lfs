@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cat > /etc/fstab << "EOF"
+FSTAB_FILE=/etc/fstab
+cat > $FSTAB_FILE << "EOF"
 # Begin /etc/fstab
 
 # file system	mount-point	type	options				dump	fsck
@@ -21,7 +22,8 @@ for mountpoint in / /boot/efi; do
 		echo "Unexpected filesystem type: $mount_info"
 		exit 1
 	fi
-	echo "$fstab_info" >> /etc/fstab
+	echo "$fstab_info"
+	echo "$fstab_info" >> $FSTAB_FILE
 done
 
-echo "# End /etc/fstab" >> /etc/fstab
+echo "# End /etc/fstab" >> $FSTAB_FILE
