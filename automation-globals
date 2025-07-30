@@ -16,8 +16,8 @@ enter_package_source() {
 		echo "neither 'PACKAGE' or 'step' are defined"
 		exit 1
 	fi
-	pushd /sources/$package
-	package_url=$(cat /chroot-scripts/PACKAGES | grep "^$package" | awk '{print $2}')
+	package_url=$(cat ${LFS_CHROOT:+/chroot-scripts/}PACKAGES | grep "^$package" | awk '{print $2}')
+	pushd ${LFS:-}/sources/$package
 	package_archive=$(basename $package_url)
 	decompressed_archive=$(get_decompressed_archive $package_archive)
 	if [ -z ${decompressed_archive:-} ]; then
