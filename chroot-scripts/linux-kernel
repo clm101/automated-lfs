@@ -77,10 +77,45 @@ do_build() {
 	make
 	make modules_install
 
-	cp -iv arch/x86/boot/bzImage /boot/vmlinuz-6.16-lfs
-	cp -iv System.map /boot/System.map-6.16
+	local kernel_release=$(cat include/config/kernel.release)
+	local kernel_file=/boot/vmlinuz-$kernel_release-lfs
+	cp -iv arch/x86/boot/bzImage $kernel_file
+	cp -iv System.map /boot/System.map-$kernel_release
 
-	cp -iv .config /boot/config-6.16
+	cp -iv .config /boot/config-$kernel_release
 
-	cp -r Documentation -T /usr/share/doc/linux-6.16
+	cp -r Documentation -T /usr/share/doc/linux-$kernel_release
+
+	local grub_cfg=/boot/grub/grub.cfg
+	cat > $grub_cfg << "EOF"
+set default=0
+set timeout=5
+
+insmod part_gpt
+insmod ext2
+
+EOF
+	local kernel_device=$(mount -l | grep "on / type" | cut -d' ' -f 1)
+	local device_data=$(lsblk -o UUID,PARTUUID,PATH | grep "$kernel_device")
+	echo "search --set=root --fs-uuid $(echo $device_data | cut -d' ' -f 1)" >> $grub_cfg
+	cat >> $grub_cfg << "EOF"
+
+insmod efi_gop
+insmod efi_uga
+if loadfont /boot/grub/fonts/firamono.pf2; then
+        terminal_output gfxterm
+elif loadfont /boot/grub/fonts/unicode.pf2; then
+        terminal_output gfxterm
+fi
+
+EOF
+	echo "menuentry \"GNU/Linux, Linux $kernel_release-LFS\" {" >> $grub_cfg
+	echo "	linux $kernel_file root=PARTUUID=$(echo $device_data | cut -d' ' -f 2) ro" >> $grub_cfg
+	cat >> $grub_cfg << "EOF"
+}
+
+menuentry "Firmware setup" {
+	fwsetup
+}
+EOF
 }
