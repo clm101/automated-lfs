@@ -250,6 +250,7 @@ function setup_chroot {
 				TESTSUITEFLAGS="-j$(nproc)"	\
 				LFS_CHROOT=1 \
 				LFS_CHROOT_START_SCRIPT=${start_script:-} \
+				LFS_EFI_DEVICE=${efi_device:?EFI device must be provided (-e <device path>) for chroot}
 				/bin/bash /chroot-scripts/manager
 }
 
@@ -269,6 +270,7 @@ while getopts ":bcs:l:" option; do
 		c) setup_lfs; setup_chroot; exit 0;;
 		s) start_script=$OPTARG;;
 		l) lfs_device=$OPTARG;;
+		e) efi_device=$OPTARG;;
 		*) 
 			echo "bad option: " $option
 			exit ;;

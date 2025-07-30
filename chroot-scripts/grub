@@ -23,4 +23,8 @@ do_build() {
 
 	install -vm755 grub-mkfont /usr/bin/ &&
 	install -vm644 ascii.h widthspec.h *.pf2 /usr/share/grub/
+
+	mountpoint /boot/efi || mount --mkdir -v -t vfat $LFS_EFI_DEVICE -o codepage=437,iocharset=iso8859-1 /boot/efi
+	mountpoint /sys/firmware/efi/efivars || mount -v -t efivarfs efivarfs /sys/firmware/efi/efivars
+	grub-install --bootloader-id=LFS --recheck
 }
